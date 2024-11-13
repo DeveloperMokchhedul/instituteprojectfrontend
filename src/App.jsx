@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
 import Navbar from "./components/navbar/Navbar"
 import NotFound from './pages/NotFound'
+import Registration from './pages/Registration'
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='/registration' element={<Registration />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
 
