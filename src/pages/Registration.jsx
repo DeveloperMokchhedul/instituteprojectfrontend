@@ -9,6 +9,7 @@ function Registration() {
         name: "",
         email: "",
         password: "",
+        phone:"",
         role: "",
       });
     
@@ -31,20 +32,24 @@ function Registration() {
       const navigate = useNavigate();
     
       const handleSubmit = async () => {
-        const form = new FormData();
-        form.append("name", inputData.name);
-        form.append("email", inputData.email);
-        form.append("password", inputData.password);
-        form.append("role", inputData.role); // Append role to FormData
+        const formData = new FormData();
+        formData.append("name", inputData.name);
+        formData.append("email", inputData.email);
+        formData.append("password", inputData.password);
+        formData.append("phone", inputData.phone);
+        formData.append("role", inputData.role); // Append role to FormData
         if (image) {
-          form.append("image", image); // Append image if selected
+          formData.append("image", image); // Append image if selected
         }
+
+        console.log(formData);
+        
         
         axios.defaults.withCredentials = true;
         
         try {
-          const res = await axios.post("http://localhost:3000/api/user/registration", form);
-          console.log(res);
+          const res = await axios.post("http://localhost:5050/api/user/registration", formData);
+          console.log(" response data is ", res);
           
           if (res.status === 201) {
             navigate("/signin");
@@ -88,11 +93,24 @@ function Registration() {
             </div>
     
             <div>
-              <label htmlFor="role">Enter your role (admin/user)</label>
+             
+              <select name="role" id="role" 
+              onChange={handleChange} 
+              className='w-full py-1 px-3 outline-none border border-black rounded'>
+                <option value="">Enter your role</option>
+                <option value="seller">
+                  Seller
+                </option>
+                <option value="user">User</option>
+              </select>
+         
+            </div>
+            <div>
+              <label htmlFor="phone">phone number</label>
               <input
                 type="text"
-                name="role"
-                placeholder="Enter your role: admin or user"
+                name="phone"
+                placeholder="Enter your valid phone number"
                 className="w-full py-1 px-3 outline-none border border-black rounded"
                 onChange={handleChange}
               />

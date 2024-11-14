@@ -7,15 +7,31 @@ import { Link, NavLink, Outlet } from 'react-router-dom';
 import { NavbarData } from '../../api/navbar';
 import { GiCrossMark, GiHamburgerMenu } from 'react-icons/gi';
 import { CgProfile } from "react-icons/cg";
+import {useDispatch, useSelector}  from "react-redux"
+import { signOut } from '../../redux/slice/userSlice';
 
 function Navbar() {
+  const {currentUser,isAuthenticated} = useSelector((state)=>state.user)
+
+  const dispatch = useDispatch()
+  
   const [ismenu, setIsMenu] = useState(false);
+  const [profile,setProfile] = useState(false)
+  const handleProfile=()=>{
+
+
+  }
+
+
+  const handleLogOut = ()=>{
+    dispatch(signOut())
+  }
   return (
     <>
       <header className='z-50 w-full bg-bgPrimary'>
         <Container className="pt-[23px] pb-[18px]">
           <div className='flex justify-between items-center'>
-            <h1>Book Store</h1>
+            <h1 className='text-2xl font-bold'>BookCycle</h1>
 
             {/* mobile menu */}
             {ismenu ? (
@@ -66,10 +82,28 @@ function Navbar() {
               </ul>
             </div>
 
-            <div className='flex gap-5 items-center'>
-              <CgProfile />
+            <div className='flex gap-5 items-center relative'>
+              <div>
+              {
+                currentUser?<img onClick={()=>setProfile(!profile)} className='w-[30px] h-[30px] border rounded-full' src={currentUser.data.data.user.image} alt="" />:<CgProfile />
+              }
+              </div>
 
-              <Link to="/registration">Registration</Link>
+              {
+                currentUser?<Link to={"/profile"}>{currentUser.data.data.user.name}</Link>:(<Link to="/registration">Registration</Link>)
+              }
+              {
+                profile &&        
+                <div onClick={()=>setProfile(false)} className='w-[150px] h-[150px] absolute top-[52px] right-5 text-center flex flex-col gap-3'> 
+                <Link to={"/profile"}>Profile</Link>
+                <button onClick={handleLogOut}>Logout</button>
+              </div>
+              }
+
+       
+              
+
+          
             </div>
           </div>
         </Container>

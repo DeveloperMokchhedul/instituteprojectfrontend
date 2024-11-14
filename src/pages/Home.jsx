@@ -1,11 +1,16 @@
-import React from 'react'
+import React from "react";
+import Banner from "../components/home/Banner";
+import NewRelease from "../components/home/NewRelease";
 
 function Home() {
   return (
-    <div>
-      <h1>hey this is home page</h1>
-    </div>
-  )
+    <>
+      <div className="mx-[20px]">
+        <Banner />
+        <NewRelease />
+      </div>
+    </>
+  );
 }
 
-export default Home
+export default Home;

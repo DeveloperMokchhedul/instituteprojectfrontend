@@ -5,8 +5,8 @@ export const NavbarData = [
         path:"/"},
     {
         id:2,
-        label:"about", 
-        path:"/about"
+        label:"Books", 
+        path:"/books"
     },
     {
         id:3,
