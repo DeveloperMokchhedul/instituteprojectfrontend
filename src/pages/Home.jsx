@@ -1,6 +1,6 @@
 import React from "react";
 import Banner from "../components/home/Banner";
-import NewRelease from "../components/home/NewRelease";
+// import NewRelease from "../components/home/NewRelease";
 
 function Home() {
   return (
