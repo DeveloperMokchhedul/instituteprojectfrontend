@@ -7,7 +7,7 @@ function Home() {
     <>
       <div className="mx-[20px]">
         <Banner />
-        <NewRelease />
+        {/* <NewRelease /> */}
       </div>
     </>
   );
