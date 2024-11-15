@@ -37,9 +37,9 @@ function Registration() {
         formData.append("email", inputData.email);
         formData.append("password", inputData.password);
         formData.append("phone", inputData.phone);
-        formData.append("role", inputData.role); // Append role to FormData
+        formData.append("role", inputData.role); 
         if (image) {
-          formData.append("image", image); // Append image if selected
+          formData.append("image", image); 
         }
         
         

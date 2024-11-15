@@ -16,6 +16,7 @@ function Books() {
       const res = await axios.get(
          "https://instituteprojectbackend.onrender.com/api/product/releaseproduct"
       );
+      
       setReleaseProduct(res.data.AllProduct);
     };
     ShowAllProduct();
