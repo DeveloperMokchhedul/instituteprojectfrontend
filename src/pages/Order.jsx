@@ -1,11 +1,11 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+// import React from 'react'
+// import { useSelector } from 'react-redux'
 
-function Order() {
-    const { totalPrice } = useSelector((state) => state.cart)
-  return (
-    <div>total price is: {totalPrice}</div>
-  )
-}
+// function Order() {
+//     const { totalPrice } = useSelector((state) => state.cart)
+//   return (
+//     <div>total price is: {totalPrice}</div>
+//   )
+// }
 
-export default Order
+// export default Order
