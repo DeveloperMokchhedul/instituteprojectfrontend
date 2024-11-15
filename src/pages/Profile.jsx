@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 function Profile() {
     const {currentUser,isAuthenticated} = useSelector((state)=>state.user)
-    console.log(currentUser.data.data.user);
+    // console.log(currentUser.data.data.user);
     
   return (
     <div className="">

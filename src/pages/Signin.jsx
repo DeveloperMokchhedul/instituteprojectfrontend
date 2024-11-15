@@ -51,7 +51,7 @@ function Signin() {
         console.log("i need to findout why login failed");
         console.log(err);
         
-      toast.error(err.response?.data?.message || "Login failed");
+      toast.error(err.response?.message || "Login failed");
       console.error(err);
     }
   };
