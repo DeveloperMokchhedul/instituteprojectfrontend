@@ -8,7 +8,7 @@ function SingleBook() {
   useEffect(() => {
     const singlebook = async () => {
       const res = await axios.get(
-        `http://localhost:5050/api/product/singleproduct/${id}`
+        `https://instituteprojectbackend.onrender.com/api/product/singleproduct/${id}`
       );
       setSingleBook(res.data.data);
     };

@@ -7,7 +7,7 @@ function NewRelease() {
 
   useEffect(()=>{
     const ShowAllProduct = async()=>{
-      const res = await axios.get("http://localhost:5050/api/product/releaseproduct");
+      const res = await axios.get("https://instituteprojectbackend.onrender.com/api/product/releaseproduct");
       setReleaseProduct(res.data.AllProduct)
 
     }

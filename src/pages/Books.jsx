@@ -14,7 +14,7 @@ function Books() {
   useEffect(() => {
     const ShowAllProduct = async () => {
       const res = await axios.get(
-        "http://localhost:5050/api/product/releaseproduct"
+         "https://instituteprojectbackend.onrender.com/api/product/releaseproduct"
       );
       setReleaseProduct(res.data.AllProduct);
     };
