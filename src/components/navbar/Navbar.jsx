@@ -3,17 +3,19 @@ import Button from '../common/Button';
 import { CiSearch } from 'react-icons/ci';
 import ButtonIcon from '../common/ButtonIcon';
 import Container from '../common/Container';
-import { Link, NavLink, Outlet } from 'react-router-dom';
+import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { NavbarData } from '../../api/navbar';
 import { GiCrossMark, GiHamburgerMenu } from 'react-icons/gi';
 import { CgProfile } from "react-icons/cg";
 import {useDispatch, useSelector}  from "react-redux"
 import { signOut } from '../../redux/slice/userSlice';
-
+import { CiShoppingCart } from "react-icons/ci";
 function Navbar() {
   const {currentUser,isAuthenticated} = useSelector((state)=>state.user)
+  const {cartItem} = useSelector((state)=>state.cart)
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   
   const [ismenu, setIsMenu] = useState(false);
   const [profile,setProfile] = useState(false)
@@ -33,8 +35,8 @@ function Navbar() {
           <div className='flex justify-between items-center'>
             <h1 className='text-2xl font-bold'>BookCycle</h1>
 
-            {/* mobile menu */}
-            {ismenu ? (
+               {/* mobile menu */}
+               {ismenu ? (
               <GiCrossMark onClick={() => setIsMenu(false)} className='text-white text-2xl z-50 md:hidden' />
             ) : (
               <GiHamburgerMenu onClick={() => setIsMenu(true)} className='text-white text-2xl z-50 md:hidden' />
@@ -58,7 +60,7 @@ function Navbar() {
                       </li>
                     ))}
                   </ul>
-                  <NavbarProfileSection />
+                  {/* <NavbarProfileSection /> */}
                 </div>
               )}
             </div>
@@ -82,15 +84,28 @@ function Navbar() {
               </ul>
             </div>
 
-            <div className='flex gap-5 items-center relative'>
-              <div>
+            <div  className='flex gap-5 items-center relative hidden md:flex'>
+              <div className='flex gap-5 items-center'>
+                <div className='relative'>
+
+                <Link to={"/cart"}>  <CiShoppingCart  className='text-3xl'  /></Link>
+                  <div className='w-[25px] h-[25px] bg-red-400 rounded-full absolute -top-3 -right-2'> 
+                    <p className='flex items-center justify-center'>{cartItem.length}</p>
+                  </div>
+                  
+                </div>
               {
-                currentUser?<img onClick={()=>setProfile(!profile)} className='w-[30px] h-[30px] border rounded-full' src={currentUser.data.data.user.image} alt="" />:<CgProfile />
+                currentUser?<img onClick={()=>setProfile(!profile)} className='w-[40px] h-[40px] border rounded-full' src={currentUser.data.data.user.image} alt="" />:<CgProfile />
               }
               </div>
 
               {
-                currentUser?<Link to={"/profile"}>{currentUser.data.data.user.name}</Link>:(<Link to="/registration">Registration</Link>)
+                !currentUser &&
+                <div className='flex gap-3'>
+                  <button className='bg-green-600 text-white px-3 py-1 rounded-md'><Link to={"/registration"}>SignUp</Link></button>
+                  <button className='bg-green-600 text-white px-3 py-1 rounded-md'><Link to={"/signin"}>Login</Link></button>
+                
+                </div>
               }
               {
                 profile &&        
@@ -99,12 +114,8 @@ function Navbar() {
                 <button onClick={handleLogOut}>Logout</button>
               </div>
               }
-
-       
-              
-
-          
             </div>
+
           </div>
         </Container>
       </header>

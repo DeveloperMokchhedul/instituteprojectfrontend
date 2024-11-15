@@ -11,6 +11,7 @@ import Profile from './pages/Profile'
 import Dashboard from './pages/Dashboard'
 import Books from './pages/Books'
 import SingleBook from './pages/SingleBook'
+import Cart from './pages/Cart'
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path='/books' element={<Books />} />
         <Route path='/books/:id' element={<SingleBook />} />
         <Route path='/dashboard' element={<Dashboard />} />
+        <Route path='/cart' element={<Cart />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
       <ToastContainer />

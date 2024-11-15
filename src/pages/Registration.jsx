@@ -41,14 +41,15 @@ function Registration() {
         if (image) {
           formData.append("image", image); // Append image if selected
         }
-
-        console.log(formData);
         
-        
-        axios.defaults.withCredentials = true;
         
         try {
-          const res = await axios.post("http://localhost:5050/api/user/registration", formData);
+          const res = await axios.post("http://localhost:5050/api/user/registration", formData,{
+            headers:{
+              "Content-Type":"multipart/form-data"
+            },
+            withCredentials:true
+          });
           console.log(" response data is ", res);
           
           if (res.status === 201) {
