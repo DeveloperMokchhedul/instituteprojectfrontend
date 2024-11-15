@@ -1,10 +1,11 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { decressCart, incressCart, removeElement } from '../redux/slice/cartSlice';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Cart() {
   const dispatch = useDispatch()
+  const navigator = useNavigate()
 
   const { cartItem } = useSelector((state) => state.cart)
   const { totalPrice, totalQuantity } = useSelector((state) => state.cart)
@@ -107,7 +108,7 @@ function Cart() {
                   }
 
                 </div>
-                <button className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">Checkout</button>
+                <Link to={"/order"}><button  className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">Checkout</button></Link>
               </div>
             </div> 
 
