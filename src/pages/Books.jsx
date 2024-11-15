@@ -17,7 +17,7 @@ function Books() {
          "https://instituteprojectbackend.onrender.com/api/product/releaseproduct"
       );
       
-      setReleaseProduct(res.data.AllProduct);
+      // setReleaseProduct(res.data.AllProduct);
     };
     ShowAllProduct();
   }, []);

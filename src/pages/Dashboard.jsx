@@ -5,7 +5,7 @@ import UserDashboard from '../components/dashboard/userdashboard/UserDashboard';
 
 function Dashboard() {
     const {currentUser,isAuthenticated} = useSelector((state)=>state.user)
-    const role = currentUser.data.data.user.role
+    // const role = currentUser.data.data.user.role
   
     
     
