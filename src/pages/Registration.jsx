@@ -56,7 +56,7 @@ function Registration() {
             navigate("/signin");
             
           
-            toast.success(res.data.message);
+            // toast.success(res.data.message);
           }
         } catch (error) {
           toast.error(error.response?.message || error.message);
