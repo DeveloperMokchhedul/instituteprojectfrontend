@@ -13,7 +13,7 @@ import Books from "./pages/Books";
 // import SingleBook from "./pages/SingleBook";
 import Cart from "./pages/Cart";
 import PrivateRoute from "./components/PrivateRoute";
-// import Order from "./pages/Order";
+import Order from "./pages/Order";
 
 function App() {
   return (
@@ -43,14 +43,14 @@ function App() {
           }
         />
 
-        {/* <Route
+        <Route
           path="/order"
           element={
             <PrivateRoute>
               <Order />
             </PrivateRoute>
           }
-        /> */}
+        />
           <Route
           path="/cart"
           element={
