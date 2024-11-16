@@ -11,7 +11,7 @@ import Signin from "./pages/Signin";
 import Dashboard from "./pages/Dashboard";
 import Books from "./pages/Books";
 // import SingleBook from "./pages/SingleBook";
-// import Cart from "./pages/Cart";
+import Cart from "./pages/Cart";
 import PrivateRoute from "./components/PrivateRoute";
 // import Order from "./pages/Order";
 
@@ -51,14 +51,14 @@ function App() {
             </PrivateRoute>
           }
         /> */}
-                {/* <Route
+          <Route
           path="/cart"
           element={
             <PrivateRoute>
               <Cart />
             </PrivateRoute>
           }
-        /> */}
+        />
 
         <Route path="*" element={<NotFound />} />
       </Routes>
