@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-function OrderSamary() {
+function OrderSamary({placeOrderHandle}) {
   const { cartItem } = useSelector((state) => state.cart);
   const { totalPrice, totalQuantity } = useSelector((state) => state.cart);
 
@@ -35,7 +35,7 @@ function OrderSamary() {
             </div>
             <p className="text-2xl font-bold ">Cash On Delivery</p>
         </div>
-        <button className="bg-green-500 text-white font-bold text-2xl w-full text-center rounded-md">Place order</button>
+        <button onClick={()=>placeOrderHandle()} className="bg-green-500 text-white font-bold text-2xl w-full text-center rounded-md">Place order</button>
 
       </div>
     </div>

@@ -43,8 +43,8 @@ function AddBook() {
     console.log(formData);
 
     try {
-      const res = await axios.post("https://instituteprojectbackend.onrender.com/api/product/addproduct", formData, {
-        withCredentials: true, // Ensure cookies are included in the request
+      const res = await axios.post("http://localhost:5173/api/product/addproduct", formData, {
+        withCredentials: true,
       });
 
       if (res.status === 201) {

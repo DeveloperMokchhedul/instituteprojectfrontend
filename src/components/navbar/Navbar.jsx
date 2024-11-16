@@ -95,7 +95,7 @@ function Navbar() {
                   
                 </div>
               {
-                // currentUser?<img onClick={()=>setProfile(!profile)} className='w-[40px] h-[40px] border rounded-full' src={currentUser.data.data.user.image} alt="" />:<CgProfile />
+                currentUser?<img onClick={()=>setProfile(!profile)} className='w-[40px] h-[40px] border rounded-full' src={currentUser.data.data.user.image} alt="" />:<CgProfile />
               }
               </div>
 

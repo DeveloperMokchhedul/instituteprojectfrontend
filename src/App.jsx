@@ -14,6 +14,7 @@ import SingleBook from "./pages/SingleBook";
 import Cart from "./pages/Cart";
 import PrivateRoute from "./components/PrivateRoute";
 import Order from "./pages/Order";
+import OrderConferm from "./pages/OrderConferm";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/signin" element={<Signin />} />
         <Route path="/books" element={<Books />} />
         <Route path="/books/:id" element={<SingleBook />} />
+        <Route path="/order-confirmation" element={<OrderConferm />} />
         {/* Protected Routes */}
         {/* <Route
           path="/profile"

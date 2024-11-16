@@ -1,17 +1,7 @@
 import React, { useState } from "react";
 
-function UserDetails() {
-  const [orderData, setOrderData] = useState();
+function UserDetails({handleChange}) {
 
-  const handleChange = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-
-    setOrderData({
-      ...orderData,
-      [name]: value,
-    });
-  };
   return (
     <div className="w-[70%] ">
       <div className="mt-[30px] w-full">
@@ -30,7 +20,7 @@ function UserDetails() {
             <label htmlFor="lastName">Enter your LastName</label>
             <input
               type="text"
-              name="LastName"
+              name="lastname"
               placeholder="Enter your name"
               className="w-full py-1 px-3 outline-none border border-black rounded"
               onChange={handleChange}
@@ -45,7 +35,7 @@ function UserDetails() {
             <label htmlFor="district">Enter your District </label>
             <input
               type="text"
-              name="District"
+              name="district"
               placeholder="Enter your District"
               className="w-full py-1 px-3 outline-none border border-black rounded"
               onChange={handleChange}
