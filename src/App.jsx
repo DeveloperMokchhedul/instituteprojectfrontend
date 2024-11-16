@@ -8,11 +8,11 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Signin from "./pages/Signin";
 // import Profile from "./pages/Profile";
-// import Dashboard from "./pages/Dashboard";
+import Dashboard from "./pages/Dashboard";
 import Books from "./pages/Books";
 // import SingleBook from "./pages/SingleBook";
 // import Cart from "./pages/Cart";
-// import PrivateRoute from "./components/PrivateRoute";
+import PrivateRoute from "./components/PrivateRoute";
 // import Order from "./pages/Order";
 
 function App() {
@@ -34,14 +34,14 @@ function App() {
             </PrivateRoute>
           }
         /> */}
-        {/* <Route
+        <Route
           path="/dashboard"
           element={
             <PrivateRoute>
               <Dashboard />
             </PrivateRoute>
           }
-        /> */}
+        />
 
         {/* <Route
           path="/order"
