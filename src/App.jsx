@@ -10,7 +10,7 @@ import Signin from "./pages/Signin";
 // import Profile from "./pages/Profile";
 import Dashboard from "./pages/Dashboard";
 import Books from "./pages/Books";
-// import SingleBook from "./pages/SingleBook";
+import SingleBook from "./pages/SingleBook";
 import Cart from "./pages/Cart";
 import PrivateRoute from "./components/PrivateRoute";
 import Order from "./pages/Order";
@@ -24,7 +24,7 @@ function App() {
         <Route path="/registration" element={<Registration />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/books" element={<Books />} />
-        {/* <Route path="/books/:id" element={<SingleBook />} /> */}
+        <Route path="/books/:id" element={<SingleBook />} />
         {/* Protected Routes */}
         {/* <Route
           path="/profile"
