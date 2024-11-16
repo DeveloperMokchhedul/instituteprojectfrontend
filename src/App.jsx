@@ -7,7 +7,7 @@ import Registration from "./pages/Registration";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Signin from "./pages/Signin";
-// import Profile from "./pages/Profile";
+import Profile from "./pages/Profile";
 import Dashboard from "./pages/Dashboard";
 import Books from "./pages/Books";
 import SingleBook from "./pages/SingleBook";
@@ -27,15 +27,15 @@ function App() {
         <Route path="/books" element={<Books />} />
         <Route path="/books/:id" element={<SingleBook />} />
         <Route path="/order-confirmation" element={<OrderConferm />} />
-        {/* Protected Routes */}
-        {/* <Route
+    
+        <Route
           path="/profile"
           element={
             <PrivateRoute>
               <Profile />
             </PrivateRoute>
           }
-        /> */}
+        />
         <Route
           path="/dashboard"
           element={
