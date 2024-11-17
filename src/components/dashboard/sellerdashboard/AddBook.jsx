@@ -43,13 +43,13 @@ function AddBook() {
     console.log(formData);
 
     try {
-      const res = await axios.post("http://localhost:5173/api/product/addproduct", formData, {
+      const res = await axios.post("http://localhost:5050/api/product/addproduct", formData, {
         withCredentials: true,
       });
 
       if (res.status === 201) {
         toast.success(res.data.message);
-        navigate('/'); // Redirect after success
+        navigate('/');
       }
     } catch (error) {
       toast.error(error.response?.data?.message || error.message);

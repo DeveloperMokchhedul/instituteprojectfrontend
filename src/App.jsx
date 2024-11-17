@@ -15,6 +15,11 @@ import Cart from "./pages/Cart";
 import PrivateRoute from "./components/PrivateRoute";
 import Order from "./pages/Order";
 import OrderConferm from "./pages/OrderConferm";
+import DashBoardLayout from "./components/dashboard/DashBoardLayout";
+import AddBook from "./components/dashboard/sellerdashboard/AddBook";
+import UserDashboard from "./components/dashboard/userdashboard/UserDashboard";
+import ShowProduct from "./components/dashboard/sellerdashboard/ShowProduct";
+import OrderProduct from "./components/dashboard/sellerdashboard/OrderProduct";
 
 function App() {
   return (
@@ -37,13 +42,18 @@ function App() {
           }
         />
         <Route
-          path="/dashboard"
-          element={
-            <PrivateRoute>
-              <Dashboard />
-            </PrivateRoute>
-          }
+
         />
+
+        <Route path="/dashboard"element={<PrivateRoute><DashBoardLayout /></PrivateRoute>} >
+        <Route path="/dashboard/seller/addproduct" element = {<AddBook />} />
+        <Route path="/dashboard" element = {<ShowProduct />} />
+        <Route path="/dashboard/seller/product" element = {<ShowProduct />} />
+        <Route path="/dashboard/seller/order" element = {<OrderProduct />} />
+        <Route path="/dashboard/user/order" element = {<UserDashboard />} />
+          
+
+        </Route>
 
         <Route
           path="/order"
