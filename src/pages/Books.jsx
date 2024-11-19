@@ -77,13 +77,16 @@ function Books() {
                     </p>
                   </div>
                   <img
-                    className="w-[320px] h-[360px]"
+                    className="w-[150px] h-[150px] object-cover object-top mx-auto rounded-lg "
                     src={product.productImage}
                     alt=""
                   />
-                  <p>BooKName: {product.bookname}</p>
+                  <div className=" flex flex-col gap-2">
+                  <p className="mt-[5px]">Name: {product.bookname}</p>
                   <p>Price: {product.price}৳</p>
                   <p>{product.description.slice(0, 50)}...</p>
+                  </div>
+                 
                   <div className="flex justify-between px-3 my-3">
                     <Link
                       to={`/books/${product._id}`}

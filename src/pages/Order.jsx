@@ -1,15 +1,17 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import UserDetails from "../components/Checkout/UserDetails";
 import OrderSamary from "../components/Checkout/OrderSamary";
+import { removeAllCartItem } from "../redux/slice/cartSlice";
 
 function Order() {
   const { totalPrice, cartItem, totalQuantity } = useSelector((state) => state.cart);
   const [userData, setUserData] = useState({});
   const navigate = useNavigate();
+  const dispatch = useDispatch()
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,7 +27,8 @@ function Order() {
     district: userData.district,
     city: userData.city,
     zip: userData.zip,
-    village: userData.village,
+    phone: userData.phone,
+    bookId:cartItem.map((item)=>item._id),
     book: cartItem.map((item) => `${item.bookname} × ${item.quantity}`),
     totalprice: totalPrice,
   };
@@ -46,11 +49,15 @@ function Order() {
 
       if (res.status === 201) {
         toast.success("Order placed successfully!");
-        navigate("/order-confirmation"); 
+        navigate("/dashboard"); 
       }
     } catch (error) {
       toast.error(error.response?.data?.message || error.message);
     }
+
+    dispatch(removeAllCartItem())
+
+
   };
 
   return (

@@ -67,11 +67,11 @@ function UserDetails({handleChange}) {
             />
           </div>
           <div className="w-1/2">
-            <label htmlFor="email">Enter your village</label>
+            <label htmlFor="email">Enter your Phone</label>
             <input
-              type="text"
-              name="village"
-              placeholder="Enter your Village"
+              type="number"
+              name="phone"
+              placeholder="Enter your phone"
               className="w-full py-1 px-3 outline-none border border-black rounded"
               onChange={handleChange}
             />

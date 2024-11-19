@@ -29,18 +29,43 @@ function UserDashboard() {
   }
   console.log(order);
 
+
+  const handleOrderDelete = async (id) => {
+    console.log(id);
+    
+
+    try {
+      const res = await axios.delete(
+        `http://localhost:5050/api/order/delete/${id}`,
+        {
+          withCredentials: true,
+        }
+      );
+      window.location.reload();
+      console.log("Delete successful:", res.data);
+      toast.success("order delete successfully");
+    } catch (error) {
+      console.error("Error deleting order:", error);
+    }
+  };
+
+
+  // http://localhost:5050/api/order/delete
+
+
+
   return (
     <div className="flex  flex-col gap-5 w-2/3 mx-auto mt-[20px] roounded-md">
       {order.length === 0 ? (
         <p>No orders yet.</p>
       ) : (
-        order.map((item, index) => (
+        order.map((item) => (
           <div
-            key={index}
+            key={item._id}
             className="flex items-center justify-between bg-slate-300 rounded-md  p-5"
           >
-            <p c>
-              {item.book.map((book) => (
+            <p>
+              {item.book?.map((book) => (
                 <div className="flex gap-12">{book}</div>
               ))}
             </p>
@@ -48,7 +73,7 @@ function UserDashboard() {
             <p>Total Price: {item.totalprice}</p>
             <div className="flex gap-3">
               <button className="bg-yellow-600 px-3 py-2 rounded-md">pending</button>
-              <button className="bg-red-500 text-white rounded-md px-3 py-1">CancelOrder</button>
+              <button onClick={()=>handleOrderDelete(item._id)} className="bg-red-500 text-white rounded-md px-3 py-1">CancelOrder</button>
             </div>
           </div>
         ))

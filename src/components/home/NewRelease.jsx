@@ -1,9 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-
+import {addToCart} from '../../redux/slice/cartSlice'
 function NewRelease() {
   const [releaseProduct, setReleaseProduct] = useState([])
+  const dispatch = useDispatch()
 
   useEffect(()=>{
     const ShowAllProduct = async()=>{
@@ -17,6 +19,12 @@ function NewRelease() {
 
   
 console.log(releaseProduct);
+
+const handleCart = (product) => {
+  console.log("product added in cart");
+  
+  dispatch(addToCart(product));
+};
 
 
   return (
@@ -40,7 +48,7 @@ console.log(releaseProduct);
                     <p className="">{product.description.slice(0,60)}...</p>
                     <div className="flex justify-between px-3 my-3">
                     <Link to={`/books/${product._id}`} onClick={()=>handleSingleProduct(product._id)}  className="bg-green-400 px-2 py-1 rounded-md text-white">show details</Link>
-                      <button className="bg-red-400 px-2 py-1 rounded-md text-white">Add to Cart</button>
+                      <button onClick={()=>handleCart(product)} className="bg-red-400 px-2 py-1 rounded-md text-white">Add to Cart</button>
                     </div>
 
                   </div>

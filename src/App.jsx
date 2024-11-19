@@ -20,8 +20,12 @@ import AddBook from "./components/dashboard/sellerdashboard/AddBook";
 import UserDashboard from "./components/dashboard/userdashboard/UserDashboard";
 import ShowProduct from "./components/dashboard/sellerdashboard/ShowProduct";
 import OrderProduct from "./components/dashboard/sellerdashboard/OrderProduct";
+import Footer from "./components/Footer";
+import { useSelector } from "react-redux";
 
 function App() {
+  const { currentUser } = useSelector((state) => state.user);
+  const role = currentUser?.data.data.user.role;
   return (
     <>
       <Navbar />
@@ -32,7 +36,7 @@ function App() {
         <Route path="/books" element={<Books />} />
         <Route path="/books/:id" element={<SingleBook />} />
         <Route path="/order-confirmation" element={<OrderConferm />} />
-    
+
         <Route
           path="/profile"
           element={
@@ -41,18 +45,26 @@ function App() {
             </PrivateRoute>
           }
         />
+
         <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute>
+              <DashBoardLayout />
+            </PrivateRoute>
+          }
+        >
+          <Route path="/dashboard/seller/addproduct" element={<AddBook />} />
 
-        />
+          {role === "user" ? (
+            <Route path="/dashboard" element={<UserDashboard />} />
+          ) : (
+            <Route path="/dashboard" element={<ShowProduct />} />
+          )}
 
-        <Route path="/dashboard"element={<PrivateRoute><DashBoardLayout /></PrivateRoute>} >
-        <Route path="/dashboard/seller/addproduct" element = {<AddBook />} />
-        <Route path="/dashboard" element = {<ShowProduct />} />
-        <Route path="/dashboard/seller/product" element = {<ShowProduct />} />
-        <Route path="/dashboard/seller/order" element = {<OrderProduct />} />
-        <Route path="/dashboard/user/order" element = {<UserDashboard />} />
-          
-
+          <Route path="/dashboard/seller/product" element={<ShowProduct />} />
+          <Route path="/dashboard/seller/order" element={<OrderProduct />} />
+          <Route path="/dashboard/user/order" element={<UserDashboard />} />
         </Route>
 
         <Route
@@ -63,7 +75,7 @@ function App() {
             </PrivateRoute>
           }
         />
-          <Route
+        <Route
           path="/cart"
           element={
             <PrivateRoute>
@@ -74,6 +86,7 @@ function App() {
 
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <Footer />
       <ToastContainer />
     </>
   );
