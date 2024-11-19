@@ -40,7 +40,7 @@ function Order() {
     }
 
     try {
-      const res = await axios.post("http://localhost:5050/api/order/addorder", orderData, {
+      const res = await axios.post("https://instituteprojectbackend.onrender.com/api/order/addorder", orderData, {
         headers: {
           "Content-Type": "application/json",
         },

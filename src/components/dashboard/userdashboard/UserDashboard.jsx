@@ -36,7 +36,7 @@ function UserDashboard() {
 
     try {
       const res = await axios.delete(
-        `http://localhost:5050/api/order/delete/${id}`,
+        `https://instituteprojectbackend.onrender.com/api/order/delete/${id}`,
         {
           withCredentials: true,
         }

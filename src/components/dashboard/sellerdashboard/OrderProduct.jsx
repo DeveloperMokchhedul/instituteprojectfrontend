@@ -11,7 +11,7 @@ function OrderProduct() {
       try {
         setLoading(true);
         const res = await axios.get(
-          "http://localhost:5050/api/order/findbyowner",
+          "https://instituteprojectbackend.onrender.com/api/order/findbyowner",
           { withCredentials: true }
         );
         

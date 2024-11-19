@@ -31,7 +31,7 @@ function ShowProduct() {
   const handleDelete = async (id) => {
     try {
       const res = await axios.delete(
-        `http://localhost:5050/api/product/deleteproduct/${id}`,
+        `https://instituteprojectbackend.onrender.com/api/product/deleteproduct/${id}`,
         {
           withCredentials: true,
         }
