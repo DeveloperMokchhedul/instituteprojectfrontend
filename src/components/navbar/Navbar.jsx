@@ -85,7 +85,7 @@ function Navbar() {
             >
               {ismenu && (
                 <ul className="pt-[100px] flex flex-col gap-[30px] text-[14px] leading-[18px] text-gray">
-                  {NavbarData?.map((item) => (
+                  {NavbarData && NavbarData?.map((item) => (
                     <li key={item.id} onClick={() => setIsMenu(false)}>
                       <NavLink
                         to={item.path}
@@ -102,7 +102,7 @@ function Navbar() {
             {/* Desktop Menu */}
             <div className="hidden md:flex">
               <ul className="flex md:gap-[15px] lg:gap-[35px] md:text-[12px] lg:text-[14px] leading-[18px] text-gray">
-                {NavbarData?.map((item) => (
+                {NavbarData && NavbarData?.map((item) => (
                   <li
                     key={item.id}
                     className="transition-all duration-300 hover:scale-105 hover:text-titleColor"
@@ -138,11 +138,11 @@ function Navbar() {
               </div>
 
               {/* User Profile */}
-              {currentUser?.data?.data?.user ? (
+              {currentUser && currentUser?.data.data.user ? (
                 <img
                   onClick={() => setProfile(!profile)}
                   className="w-[40px] h-[40px] border rounded-full"
-                  src={currentUser?.data?.data?.user?.image || "/default-profile.png"}
+                  src={currentUser && currentUser?.data.data.user?.image || "/default-profile.png"}
                   alt="User Profile"
                 />
               ) : (
