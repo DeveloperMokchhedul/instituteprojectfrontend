@@ -12,7 +12,7 @@ function NewRelease() {
     const ShowAllProduct = async () => {
       try {
         const res = await axios.get(
-          "https://instituteprojectbackend.onrender.com/api/product/releaseproduct"
+          "http://localhost:5050/api/product/releaseproduct",{withCredentials:true}
         );
         console.log(res.data); // Debugging: Check the response structure
         setReleaseProduct(res.data?.AllProduct || []); // Use optional chaining with a default empty array

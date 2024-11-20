@@ -43,7 +43,7 @@ function AddBook() {
     console.log(formData);
 
     try {
-      const res = await axios.post("https://instituteprojectbackend.onrender.com/api/product/addproduct", formData, {
+      const res = await axios.post("http://localhost:5050/api/product/addproduct", formData, {
         withCredentials: true,
       });
 
@@ -57,9 +57,10 @@ function AddBook() {
   };
 
   return (
-    <div className='h-screen flex justify-center items-center mt-10'>
-      <div className='w-2/4 bg-white mx-auto p-5 rounded-md flex flex-col gap-y-5'>
-        <h1 className='text-4xl text-center mb-4 font-bold underline'>Add Your Book for Sales</h1>
+    <div
+      className=''>
+      <div className='w-[450px] my-[20px] bg-black rounded-lg text-white shadow-2xl shadow-slate-600  mx-auto p-5 flex flex-col gap-y-4 border-2 border-white '>
+        <h1 className='text-4xl text-center mb-4 font-oswald font-bold '>Add Your Book for Sales</h1>
 
         <div>
           <label htmlFor="name">Enter your BookName</label>
@@ -67,7 +68,7 @@ function AddBook() {
             type="text"
             name="bookname"
             placeholder="Enter your bookname"
-            className="w-full py-1 px-3 outline-none border border-black rounded"
+            className="w-full py-1 px-3 outline-none border  rounded bg-transparent border-white"
             onChange={handleChange}
           />
         </div>
@@ -78,14 +79,14 @@ function AddBook() {
             type="number"
             name="price"
             placeholder="Enter your price"
-            className="w-full py-1 px-3 outline-none border border-black rounded"
+            className="w-full py-1 px-3 outline-none border border-black rounded bg-transparent border-white"
             onChange={handleChange}
           />
         </div>
 
         <div>
-          <select name="semister" id="semister" onChange={handleChange} className='w-full py-1 px-3 outline-none border border-black rounded'>
-            <option value="">Enter Semister</option>
+          <select name="semister" id="semister" onChange={handleChange} className='w-full py-1 px-3 outline-none border border-black rounded bg-transparent border-white'>
+            <option value="">Enter Semester</option>
             <option value="1st">1st</option>
             <option value="2nd">2nd</option>
             <option value="3rd">3rd</option>
@@ -97,7 +98,7 @@ function AddBook() {
         </div>
 
         <div>
-          <select name="department" id="department" onChange={handleChange} className='w-full py-1 px-3 outline-none border border-black rounded'>
+          <select name="department" id="department" onChange={handleChange} className='w-full py-1 px-3 outline-none border border-black rounded bg-transparent border-white'>
             <option value="">Enter Department</option>
             <option value="Computer"> Computer</option>
             <option value="civil">Civil</option>
@@ -111,7 +112,7 @@ function AddBook() {
 
         <div>
           <label htmlFor="description">Enter Book description</label>
-          <textarea name='description' onChange={handleChange} className="w-full p-2 border border-gray-300 rounded-md"></textarea>
+          <textarea name='description' onChange={handleChange} className="w-full p-2 border border-gray-300 rounded-md bg-transparent border-white"></textarea>
         </div>
 
         <div>
@@ -119,7 +120,7 @@ function AddBook() {
           <input type="file" name="productImage" onChange={handleImageChange} />
         </div>
 
-        <button onClick={handleSubmit} className="bg-green-600 w-full text-center text-white py-1 px-3 rounded-md">
+        <button onClick={handleSubmit} className="bg-green-600 w-full text-center text-black py-1 px-3 rounded-md  bg-white">
           Add Book
         </button>
       </div>

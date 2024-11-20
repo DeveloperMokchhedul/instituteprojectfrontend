@@ -16,7 +16,7 @@ function Books() {
       setLoading(true);
       try {
         const res = await axios.get(
-          "https://instituteprojectbackend.onrender.com/api/product/releaseproduct"
+          "http://localhost:5050/api/product/releaseproduct", { withCredentials: true }
         );
         console.log("API Response:", res);
         setReleaseProduct(res.data?.AllProduct || []);
@@ -30,6 +30,9 @@ function Books() {
 
     fetchProducts();
   }, []);
+
+  console.log(releaseProduct);
+
 
   const handleSearch = (e) => {
     setSearch(e.target.value);
@@ -71,10 +74,18 @@ function Books() {
               key={product._id}
               className="col-span-12 md:col-span-3 p-5 rounded-md shadow-cardShadow hover:scale-95 transition-all duration-700 hover:text-white hover:bg-black"
             >
-              <div className="flex justify-between pb-5">
-                <p className="text-[12px] font-bold rounded-sm pb-2">
+              <div className="flex justify-between pb-5 items-center relative ">
+                <p className="text-[20px] font-bold rounded-sm pb-2">
                   {product.semister || "Unknown Semester"}
                 </p>
+
+                <div className=" absolute top-24 ">
+                    {product.isSold ? (<p className="font-oswald font-bold text-red-600 text-5xl z-50 hover:scale-125">SOLD OUT</p>) : ""}
+                
+                </div>
+
+
+
                 <p className="text-[14px] font-bold capitalize rounded-sm pb-2">
                   {product.department || "Unknown Department"}
                 </p>

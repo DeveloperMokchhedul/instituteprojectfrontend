@@ -11,7 +11,7 @@ function UserDashboard() {
     const findOrderByUser = async () => {
       setLoading(true);
       try {
-        const res = await axios.get("https://instituteprojectbackend.onrender.com/api/order/find", {
+        const res = await axios.get("http://localhost:5050/api/order/find", {
           withCredentials: true,
         });
         setOrder(res.data.data);
@@ -23,6 +23,9 @@ function UserDashboard() {
     };
     findOrderByUser();
   }, []);
+
+  console.log(order);
+  
 
   if (loading) {
     return <Loading />;
@@ -36,7 +39,7 @@ function UserDashboard() {
 
     try {
       const res = await axios.delete(
-        `https://instituteprojectbackend.onrender.com/api/order/delete/${id}`,
+        `http://localhost:5050/api/order/delete/${id}`,
         {
           withCredentials: true,
         }
@@ -72,7 +75,7 @@ function UserDashboard() {
 
             <p>Total Price: {item.totalprice}</p>
             <div className="flex gap-3">
-              <button className="bg-yellow-600 px-3 py-2 rounded-md">pending</button>
+              <button className="bg-yellow-600 px-3 py-2 rounded-md">{item.status}</button>
               <button onClick={()=>handleOrderDelete(item._id)} className="bg-red-500 text-white rounded-md px-3 py-1">CancelOrder</button>
             </div>
           </div>

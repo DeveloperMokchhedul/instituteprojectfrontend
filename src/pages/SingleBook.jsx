@@ -14,7 +14,7 @@ function SingleBook() {
     const singlebook = async () => {
       setLoading(true)
       const res = await axios.get(
-        `https://instituteprojectbackend.onrender.com/api/product/singleproduct/${id}`
+        `http://localhost:5050/api/product/singleproduct/${id}`
       );
       setSingleBook(res.data.data);
       setLoading(false)

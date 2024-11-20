@@ -15,7 +15,7 @@ function ShowProduct() {
       try {
         setLoading(true);
         const res = await axios.get(
-          "https://instituteprojectbackend.onrender.com/api/product/products/by-owner",
+          "http://localhost:5050/api/product/products/by-owner",
           { withCredentials: true }
         );
         setLoading(false);
@@ -31,7 +31,7 @@ function ShowProduct() {
   const handleDelete = async (id) => {
     try {
       const res = await axios.delete(
-        `https://instituteprojectbackend.onrender.com/api/product/deleteproduct/${id}`,
+        `http://localhost:5050/api/product/deleteproduct/${id}`,
         {
           withCredentials: true,
         }
