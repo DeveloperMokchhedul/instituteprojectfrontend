@@ -1,16 +1,27 @@
-import React from "react";
-import Banner from "../components/home/Banner";
-import NewRelease from "../components/home/NewRelease";
+// import React from "react";
+// import Banner from "../components/home/Banner";
+// import NewRelease from "../components/home/NewRelease";
+
+// function Home() {
+//   return (
+//     <>
+//       <div className="mx-[20px]">
+//         <Banner />
+//         <NewRelease />
+//       </div>
+//     </>
+//   );
+// }
+
+// export default Home;
+
+
+import React from 'react'
 
 function Home() {
   return (
-    <>
-      <div className="mx-[20px]">
-        <Banner />
-        <NewRelease />
-      </div>
-    </>
-  );
+    <div>Home</div>
+  )
 }
 
-export default Home;
+export default Home
