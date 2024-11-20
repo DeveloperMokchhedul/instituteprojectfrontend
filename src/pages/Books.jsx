@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/slice/cartSlice";
 import Loading from "./Loading";
@@ -66,7 +65,7 @@ function Books() {
         <Loading />
       ) : filteredProducts.length > 0 ? (
         <div className="grid grid-cols-12 gap-4">
-          {filteredProducts.map((product) => (
+          {filteredProducts && filteredProducts.map((product) => (
             <div
               key={product._id}
               className="col-span-12 md:col-span-3 p-5 rounded-md shadow-cardShadow hover:scale-95 transition-all duration-1000 hover:text-white hover:bg-black"
