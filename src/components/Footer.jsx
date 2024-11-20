@@ -28,7 +28,7 @@ const Footer = () => {
 
 
   return (
-    <footer className={`bg-gray-900 ${footer ? "pl-[300px]" : ""}  py-10 px-4 bg-black/50 text-white mt-[40px] `}>
+    <footer className={`bg-gray-900 ${footer ? "pl-[300px]" : ""}  py-10 px-4 border-t border-slate-300 mt-[40px] `}>
       {/* Top Section */}
       <div className=" mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
         {/* Left Side - Logo and Nav */}

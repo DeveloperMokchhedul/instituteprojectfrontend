@@ -7,7 +7,10 @@ export default {
   theme: {
     extend: {
       fontFamily:{
-        "onest":["Onest", "sans-serif"]
+        "onest":["Onest", "sans-serif"],
+        "gamamli":["Ga Maamli", "sans-serif"],
+        "oswald":["Oswald", "sans-serif"]
+
 
       },
       colors:{
@@ -22,7 +25,7 @@ export default {
         "descriptionColor":"#6B7280"
       },
       boxShadow: {
-        'btnShadow': '0px 4px 48px 0px #0000000F', // Custom shadow definition
+        'cardShadow': '0 4px 6px rgba(0, 0, 0, 0.1), 0 -4px 6px rgba(0, 0, 0, 0.1), 4px 0 6px rgba(0, 0, 0, 0.1), -4px 0 6px rgba(0, 0, 0, 0.1);',
       },
 
       
