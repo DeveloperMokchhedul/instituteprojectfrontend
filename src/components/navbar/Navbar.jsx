@@ -85,7 +85,7 @@ function Navbar() {
             >
               {ismenu && (
                 <ul className="pt-[100px] flex flex-col gap-[30px] text-[14px] leading-[18px] text-gray">
-                  {NavbarData && NavbarData?.map((item) => (
+                  {NavbarData?.map((item) => (
                     <li key={item.id} onClick={() => setIsMenu(false)}>
                       <NavLink
                         to={item.path}
@@ -102,7 +102,7 @@ function Navbar() {
             {/* Desktop Menu */}
             <div className="hidden md:flex">
               <ul className="flex md:gap-[15px] lg:gap-[35px] md:text-[12px] lg:text-[14px] leading-[18px] text-gray">
-                {NavbarData && NavbarData?.map((item) => (
+                {NavbarData?.map((item) => (
                   <li
                     key={item.id}
                     className="transition-all duration-300 hover:scale-105 hover:text-titleColor"
@@ -110,7 +110,7 @@ function Navbar() {
                     <NavLink
                       to={item.path}
                       className={({ isActive }) =>
-                        `font-onest text-secondary md:text-[12px] uppercase lg:text-[14px] leading-[17px] ${
+                        `font-onest text-secondary md:text-[12px] uppercase font-oswald lg:text-[14px] leading-[17px] ${
                           isActive
                             ? "text-titleColor border-b-4 border-titleColor pb-[10px]"
                             : "text-black"
@@ -125,7 +125,7 @@ function Navbar() {
             </div>
 
             {/* Profile and Cart */}
-            <div className="flex gap-5 items-center relative  md:flex">
+            <div className="flex gap-5 items-center relative hidden md:flex">
               <div className="relative">
                 <Link to={"/cart"}>
                   <CiShoppingCart className="text-3xl" />
@@ -138,11 +138,11 @@ function Navbar() {
               </div>
 
               {/* User Profile */}
-              {currentUser && currentUser?.data.data.user ? (
+              {currentUser?.data?.data?.user ? (
                 <img
                   onClick={() => setProfile(!profile)}
                   className="w-[40px] h-[40px] border rounded-full"
-                  src={currentUser && currentUser?.data.data.user.image || "/default-profile.png"}
+                  src={currentUser?.data?.data?.user?.image || "/default-profile.png"}
                   alt="User Profile"
                 />
               ) : (
