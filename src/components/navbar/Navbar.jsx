@@ -11,20 +11,18 @@ import { CiShoppingCart } from "react-icons/ci";
 function Navbar() {
   const { currentUser, isAuthenticated } = useSelector((state) => state.user);
   const { cartItem } = useSelector((state) => state.cart);
+
   const [dashboard, setDashboard] = useState(false);
   const [ismenu, setIsMenu] = useState(false);
   const [profile, setProfile] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   const dispatch = useDispatch();
   const location = useLocation();
 
   useEffect(() => {
     if (
-      location.pathname === "/dashboard" ||
-      location.pathname === "/dashboard/user/order" ||
-      location.pathname === "/dashboard/seller/order" ||
-      location.pathname === "/dashboard/seller/product" ||
-      location.pathname === "/dashboard/seller/addproduct"
+      location.pathname.startsWith("/dashboard")
     ) {
       setDashboard(true);
     } else {
@@ -36,35 +34,37 @@ function Navbar() {
     dispatch(signOut());
   };
 
-
-  const [scrolled, setScrolled] = useState(false);
-
   const handleScroll = () => {
-      const offset = window.scrollY;
-      if (offset > 50) {
-          setScrolled(true);
-      } else {
-          setScrolled(false);
-      }
+    const offset = window.scrollY;
+    if (offset > 50) {
+      setScrolled(true);
+    } else {
+      setScrolled(false);
+    }
   };
 
   useEffect(() => {
-      window.addEventListener("scroll", handleScroll);
-      return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <>
       <header
-        className={`z-50 w-full ${scrolled?"bg-bgPrimary":"bg-transparent"} transition-all duration-700 sticky ${dashboard ? "pl-[280px]" : ""} border-b shadow-sm border-slate-300 top-0 left-0 right-0`}
+        className={`z-50 w-full ${
+          scrolled ? "bg-bgPrimary" : "bg-transparent"
+        } transition-all duration-700 sticky ${
+          dashboard ? "pl-[280px]" : ""
+        } border-b shadow-sm border-slate-300 top-0 left-0 right-0`}
       >
         <Container className="pt-[23px] pb-[18px]">
           <div className="flex justify-between items-center">
+            {/* Logo */}
             <Link to={"/"}>
               <h1 className="text-2xl font-bold">BookCycle</h1>
             </Link>
 
-            {/* Mobile menu */}
+            {/* Mobile Menu Icon */}
             {ismenu ? (
               <GiCrossMark
                 onClick={() => setIsMenu(false)}
@@ -77,30 +77,29 @@ function Navbar() {
               />
             )}
 
+            {/* Mobile Menu */}
             <div
               className={`md:hidden absolute top-0 left-0 right-0 h-screen transition-all duration-500 transform ${
                 ismenu ? "translate-x-0 bg-[#333333]" : "-translate-x-full"
               } z-40 flex flex-col items-center gap-5`}
             >
               {ismenu && (
-                <div className="flex flex-col items-center gap-8">
-                  <ul className="pt-[100px] flex flex-col gap-[30px] text-[14px] leading-[18px] text-gray">
-                    {NavbarData?.map((item) => (
-                      <li key={item.id} onClick={() => setIsMenu(false)}>
-                        <NavLink
-                          to={item.path}
-                          className="font-onest text-white text-[14px] leading-[17px] transition-all duration-300 hover:scale-110 "
-                        >
-                          {item.label}
-                        </NavLink>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                <ul className="pt-[100px] flex flex-col gap-[30px] text-[14px] leading-[18px] text-gray">
+                  {NavbarData?.map((item) => (
+                    <li key={item.id} onClick={() => setIsMenu(false)}>
+                      <NavLink
+                        to={item.path}
+                        className="font-onest text-white text-[14px] leading-[17px] transition-all duration-300 hover:scale-110 "
+                      >
+                        {item.label}
+                      </NavLink>
+                    </li>
+                  ))}
+                </ul>
               )}
             </div>
 
-            {/* Desktop menu */}
+            {/* Desktop Menu */}
             <div className="hidden md:flex">
               <ul className="flex md:gap-[15px] lg:gap-[35px] md:text-[12px] lg:text-[14px] leading-[18px] text-gray">
                 {NavbarData?.map((item) => (
@@ -111,7 +110,7 @@ function Navbar() {
                     <NavLink
                       to={item.path}
                       className={({ isActive }) =>
-                        `font-onest text-secondary md:text-[12px] uppercase font-oswald lg:text-[14px] leading-[17px]  ${
+                        `font-onest text-secondary md:text-[12px] uppercase font-oswald lg:text-[14px] leading-[17px] ${
                           isActive
                             ? "text-titleColor border-b-4 border-titleColor pb-[10px]"
                             : "text-black"
@@ -127,27 +126,28 @@ function Navbar() {
 
             {/* Profile and Cart */}
             <div className="flex gap-5 items-center relative hidden md:flex">
-              <div className="flex gap-5 items-center">
-                <div className="relative">
-                  <Link to={"/cart"}>
-                    <CiShoppingCart className="text-3xl" />
-                  </Link>
-                  <div className="w-[25px] h-[25px] bg-red-400 rounded-full absolute -top-3 -right-2">
-                    <p className="flex items-center justify-center">{cartItem?.length}</p>
-                  </div>
+              <div className="relative">
+                <Link to={"/cart"}>
+                  <CiShoppingCart className="text-3xl" />
+                </Link>
+                <div className="w-[25px] h-[25px] bg-red-400 rounded-full absolute -top-3 -right-2">
+                  <p className="flex items-center justify-center">
+                    {cartItem?.length || 0}
+                  </p>
                 </div>
-
-                {currentUser && currentUser?.data?.data?.user ? (
-                  <img
-                    onClick={() => setProfile(!profile)}
-                    className="w-[40px] h-[40px] border rounded-full"
-                    src={currentUser.data.data.user.image || "/default-profile.png"} // Fallback profile image
-                    alt="User Profile"
-                  />
-                ) : (
-                  <CgProfile className="text-3xl" />
-                )}
               </div>
+
+              {/* User Profile */}
+              {currentUser?.data?.data?.user ? (
+                <img
+                  onClick={() => setProfile(!profile)}
+                  className="w-[40px] h-[40px] border rounded-full"
+                  src={currentUser?.data?.data?.user?.image || "/default-profile.png"}
+                  alt="User Profile"
+                />
+              ) : (
+                <CgProfile className="text-3xl" />
+              )}
 
               {!currentUser && (
                 <div className="flex gap-3">
