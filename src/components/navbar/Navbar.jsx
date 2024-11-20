@@ -110,7 +110,7 @@ function Navbar() {
                     <NavLink
                       to={item.path}
                       className={({ isActive }) =>
-                        `font-onest text-secondary md:text-[12px] uppercase font-oswald lg:text-[14px] leading-[17px] ${
+                        `font-onest text-secondary md:text-[12px] uppercase lg:text-[14px] leading-[17px] ${
                           isActive
                             ? "text-titleColor border-b-4 border-titleColor pb-[10px]"
                             : "text-black"
@@ -125,7 +125,7 @@ function Navbar() {
             </div>
 
             {/* Profile and Cart */}
-            <div className="flex gap-5 items-center relative hidden md:flex">
+            <div className="flex gap-5 items-center relative  md:flex">
               <div className="relative">
                 <Link to={"/cart"}>
                   <CiShoppingCart className="text-3xl" />
@@ -142,7 +142,7 @@ function Navbar() {
                 <img
                   onClick={() => setProfile(!profile)}
                   className="w-[40px] h-[40px] border rounded-full"
-                  src={currentUser && currentUser?.data.data.user?.image || "/default-profile.png"}
+                  src={currentUser && currentUser?.data.data.user.image || "/default-profile.png"}
                   alt="User Profile"
                 />
               ) : (
