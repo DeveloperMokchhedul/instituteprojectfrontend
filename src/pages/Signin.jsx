@@ -65,35 +65,42 @@ function Signin() {
 //   }, [navigate, currentUser]);
 
   return (
-    <div className='h-screen flex justify-center items-center'>
-      <div className='w-2/4 bg-white mx-auto p-5 rounded-md flex flex-col gap-y-5'>
-        <h1 className='text-4xl text-center mb-4 font-bold underline'>Login Form</h1>
+    <div style={{
+      backgroundImage:"url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-t25EHnz-6-RWXdse0PUrHzrgchmMZXvOAY2Jth4btfp_UiKpIDju6_ZHcQbrTvdSzBA&usqp=CAU')",
+      backgroundRepeat:"no-repeat",
+      backgroundPosition:"center",
+      backgroundSize:"cover"
+
+    }} 
+    className=' flex justify-center shadow-xl shadow-white'>
+      <div className='w-[350px] my-[50px] shadow-white border-white-5 shadow-inner bg-white/25 mx-auto p-5 rounded-md flex flex-col gap-y-5'>
+        <h1 className='text-4xl text-center mb-4 font-bold font-oswald text-white underline'>Login Form</h1>
 
         <div>
-          <label htmlFor="email">Enter your email</label>
+          <label className="text-white font-onest font-bold" htmlFor="email">Enter your email</label>
           <input
             type="email"
             name='email'
             placeholder='Enter your email'
-            className='w-full py-1 px-3 outline-none border border-black rounded'
+            className='w-full py-1 px-3 outline-none border border-black rounded bg-transparent placeholder:text-white'
             onChange={handleChange}
           />
         </div>
 
         <div>
-          <label htmlFor="password">Enter your password</label>
+          <label className="text-white font-onest font-bold"  htmlFor="password">Enter your password</label>
           <input
             type="password"
             name='password'
             placeholder='Enter your password'
-            className='w-full py-1 px-3 outline-none border border-black rounded'
+            className='w-full py-1 px-3 outline-none border border-black rounded bg-transparent placeholder:text-white'
             onChange={handleChange}
           />
         </div>
 
         <div>
-          <select name="role" id="role" onChange={handleChange} className='w-full py-1 px-3 outline-none border border-black rounded'>
-            <option value="">Select your role</option>
+          <select name="role" id="role" onChange={handleChange} className='w-full py-1 px-3 outline-none border border-black rounded bg-transparent placeholder:text-white'>
+            <option className="text-white" value="">Select your role</option>
             <option value="seller">Seller</option>
             <option value="user">User</option>
           </select>

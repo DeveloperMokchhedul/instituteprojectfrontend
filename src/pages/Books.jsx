@@ -66,7 +66,7 @@ function Books() {
               .map((product) => (
                 <div
                   key={product._id}
-                  className="col-span-12 md:col-span-3 p-5 rounded-md shadow-cardShadow hover:scale-95 transition-all duration-700 hover:text-white hover:bg-black  "
+                  className="col-span-12 group md:col-span-3 p-5 rounded-md shadow-cardShadow hover:scale-95 transition-all duration-1000 hover:text-white hover:bg-black  "
                 >
                   <div className="flex justify-between pb-5">
                     <p className="text-[12px] font-gamamli font-bold rounded-sm pb-2">
@@ -96,7 +96,7 @@ function Books() {
                     </Link>
                     <button
                       onClick={() => handleCart(product)}
-                      className="bg-red-400 px-2 py-1 rounded-md text-white w-[50%] font-oswald font-bold text-[15px] text-center hover:bg-white hover:text-black transition-all duration-500 "
+                      className="bg-red-400 px-2 py-1 rounded-md text-white w-[50%] font-oswald font-bold text-[15px] text-center group-hover:bg-white group-hover:text-black transition-all duration-500 "
                     >
                       Add to Cart
                     </button>

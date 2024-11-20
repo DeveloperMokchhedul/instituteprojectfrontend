@@ -67,17 +67,28 @@ function Registration() {
       
     
       return (
-        <div className='h-screen flex justify-center items-center'>
-          <div className='w-2/4 bg-white mx-auto p-5 rounded-md flex flex-col gap-y-5'>
-            <h1 className='text-4xl text-center mb-4 font-bold underline'>Registration Form</h1>
+        <div
+        style={{
+          backgroundImage:"url('/images/registration.jpg')",
+          backgroundRepeat:"no-repeat",
+          backgroundPosition:"center",
+          backgroundSize:"cover"
     
-            <div>
+        }} 
+        
+        className='flex justify-center py-[50px] bg-black  '>
+          <div className='w-[350px] relative shadow-cardShadow rounded-3xl bg-white/25 mx-auto p-5 flex flex-col gap-y-5'>
+            <div className='bg-black text-white absolute left-0 top-0 right-0 rounded-t-3xl py-[10px] ' >
+            <h1 className='text-4xl text-center font-oswald uppercase mb-4 font-bold underline'>Registration</h1>
+            </div>
+    
+            <div className='pt-[65px]'>
               <label htmlFor="name">Enter your name</label>
               <input
                 type="text"
                 name="name"
                 placeholder="Enter your name"
-                className="w-full py-1 px-3 outline-none border border-black rounded"
+                className="w-full py-1 px-3 outline-none border border-black rounded bg-transparent placeholder:text-black"
                 onChange={handleChange}
               />
             </div>
@@ -88,7 +99,7 @@ function Registration() {
                 type="email"
                 name="email"
                 placeholder="Enter your email"
-                className="w-full py-1 px-3 outline-none border border-black rounded"
+                className="w-full py-1 px-3 outline-none border border-black rounded bg-transparent placeholder:text-black"
                 onChange={handleChange}
               />
             </div>
@@ -97,7 +108,7 @@ function Registration() {
              
               <select name="role" id="role" 
               onChange={handleChange} 
-              className='w-full py-1 px-3 outline-none border border-black rounded'>
+              className='w-full py-1 px-3 outline-none border border-black rounded bg-transparent placeholder:text-black'>
                 <option value="">Enter your role</option>
                 <option value="seller">
                   Seller
@@ -112,7 +123,7 @@ function Registration() {
                 type="text"
                 name="phone"
                 placeholder="Enter your valid phone number"
-                className="w-full py-1 px-3 outline-none border border-black rounded"
+                className="w-full py-1 px-3 outline-none border border-black rounded bg-transparent placeholder:text-black"
                 onChange={handleChange}
               />
             </div>
@@ -123,7 +134,7 @@ function Registration() {
                 type="password"
                 name="password"
                 placeholder="Enter your password"
-                className="w-full py-1 px-3 outline-none border border-black rounded"
+                className="w-full py-1 px-3 outline-none border border-black rounded bg-transparent placeholder:text-black"
                 onChange={handleChange}
               />
             </div>
@@ -139,7 +150,7 @@ function Registration() {
     
             <button
               onClick={handleSubmit}
-              className="bg-green-600 w-full text-center text-white py-1 px-3 rounded-md"
+              className="bg-green-600 w-full text-center text-white py-1 px-3 rounded-md "
             >
               Register
             </button>

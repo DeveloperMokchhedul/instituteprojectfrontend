@@ -53,15 +53,10 @@ function Navbar() {
       return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-
-
-
-
-
   return (
     <>
       <header
-        className={`z-50 w-full ${scrolled?"bg-green-200":"bg-transparent"} transition-all duration-700 sticky ${dashboard ? "pl-[280px]" : ""} border-b shadow-sm border-slate-300 top-0 left-0 right-0`}
+        className={`z-50 w-full ${scrolled?"bg-bgPrimary":"bg-transparent"} transition-all duration-700 sticky ${dashboard ? "pl-[280px]" : ""} border-b shadow-sm border-slate-300 top-0 left-0 right-0`}
       >
         <Container className="pt-[23px] pb-[18px]">
           <div className="flex justify-between items-center">
@@ -156,10 +151,10 @@ function Navbar() {
 
               {!currentUser && (
                 <div className="flex gap-3">
-                  <button className="bg-green-600 text-white px-3 py-1 rounded-md">
+                  <button className="bg-black hover:bg-slate-600 text-white px-3 py-1 rounded-md">
                     <Link to={"/registration"}>SignUp</Link>
                   </button>
-                  <button className="bg-green-600 text-white px-3 py-1 rounded-md">
+                  <button className="bg-black transition-all duration-400 hover:bg-slate-600 text-white px-3 py-1 rounded-md">
                     <Link to={"/signin"}>Login</Link>
                   </button>
                 </div>
