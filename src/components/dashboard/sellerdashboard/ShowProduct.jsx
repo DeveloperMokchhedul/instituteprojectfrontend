@@ -15,7 +15,7 @@ function ShowProduct() {
       try {
         setLoading(true);
         const res = await axios.get(
-          "http://localhost:5050/api/product/products/by-owner",
+          "https://instituteprojectbackend.onrender.com/api/product/products/by-owner",
           { withCredentials: true }
         );
         setLoading(false);

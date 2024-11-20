@@ -11,7 +11,7 @@ function UserDashboard() {
     const findOrderByUser = async () => {
       setLoading(true);
       try {
-        const res = await axios.get("http://localhost:5050/api/order/find", {
+        const res = await axios.get("https://instituteprojectbackend.onrender.com/api/order/find", {
           withCredentials: true,
         });
         setOrder(res.data.data);
