@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Container from "../common/Container";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { NavbarData } from "../../api/navbar";
 import { GiCrossMark, GiHamburgerMenu } from "react-icons/gi";
 import { CgProfile } from "react-icons/cg";
 import { useDispatch, useSelector } from "react-redux";
 import { signOut } from "../../redux/slice/userSlice";
 import { CiShoppingCart } from "react-icons/ci";
+import { toast } from "react-toastify";
 
 function Navbar() {
   const { currentUser, isAuthenticated } = useSelector((state) => state.user);
@@ -32,6 +33,7 @@ function Navbar() {
 
   const handleLogOut = () => {
     dispatch(signOut());
+    toast.success("logout Successfully")
   };
 
   const handleScroll = () => {
@@ -47,6 +49,8 @@ function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const navigate = useNavigate()
 
   return (
     <>
@@ -163,10 +167,10 @@ function Navbar() {
               {profile && (
                 <div
                   onClick={() => setProfile(false)}
-                  className="w-[150px] bg-slate-500 h-[100px] absolute top-[58px] rounded-b-3xl -right-5 text-center text-white pt-5 flex flex-col gap-3"
+                  className="w-[150px] h-[100px] absolute top-[58px]   rounded-b-3xl -right-5 text-center text-black text-[16px] font-bold font-oswald pt-1 flex flex-col gap-3"
                 >
-                  <Link to={"/dashboard"}>Dashboard</Link>
-                  <button onClick={handleLogOut}>Logout</button>
+                  <button className="hover:text-white px-5 py-1 hover:bg-black rounded-full  transition-all duration-700 " onClick={()=>navigate("/dashboard")} >Dashboard</button>
+                  <button className="hover:text-white px-5 py-1 hover:bg-black rounded-full  transition-all duration-700 " onClick={handleLogOut}>Logout</button>
                 </div>
               )}
             </div>

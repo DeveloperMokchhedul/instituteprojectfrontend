@@ -1,12 +1,15 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { addToCart } from "../../redux/slice/cartSlice";
+import { toast } from "react-toastify";
 
 function NewRelease() {
   const [releaseProduct, setReleaseProduct] = useState([]);
   const dispatch = useDispatch();
+  const [isUser, setIsUser] = useState(false)
+  const { currentUser, isAuthenticated } = useSelector((state) => state.user);
 
   useEffect(() => {
     const ShowAllProduct = async () => {
@@ -24,8 +27,13 @@ function NewRelease() {
   }, []);
 
   const handleCart = (product) => {
-    console.log("Product added to cart:", product);
-    dispatch(addToCart(product));
+    console.log("product added in cart");
+    if (isUser) {
+      isUser && dispatch(addToCart(product));
+      toast.success("Book Added successfully");
+    } else {
+      toast.error("only User can add to cart");
+    }
   };
 
   return (

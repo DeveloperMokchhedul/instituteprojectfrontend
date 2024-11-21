@@ -2,14 +2,27 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Loading from "./Loading";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {addToCart} from '../redux/slice/cartSlice'
+import { toast } from "react-toastify";
 
 function SingleBook() {
   const dispatch = useDispatch()
   const [singleBook, setSingleBook] = useState();
   const [loading,setLoading] = useState(false)
+  const [isUser, setIsUser] = useState(false)
+  const { currentUser, isAuthenticated } = useSelector((state) => state.user);
   const { id } = useParams();
+
+
+  useEffect(() => {
+    if (isAuthenticated && currentUser?.data.data.user.role === "user") {
+      setIsUser(true);
+    } else {
+      setIsUser(false);
+    }
+  }, [isAuthenticated, currentUser]);
+
   useEffect(() => {
     const singlebook = async () => {
       setLoading(true)
@@ -28,12 +41,15 @@ function SingleBook() {
 
 
 
-  
-const handleCart = (product) => {
-  console.log("product added in cart");
-  
-  dispatch(addToCart(product));
-};
+  const handleCart = (product) => {
+    console.log("product added in cart");
+    if (isUser) {
+      isUser && dispatch(addToCart(product));
+      toast.success("Book Added successfully");
+    } else {
+      toast.error("only User can add to cart");
+    }
+  };
 
   return (
     <>
