@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 function OrderProduct() {
   const [loading, setLoading] = useState(false);
@@ -23,13 +24,15 @@ function OrderProduct() {
     fetchProducts();
   }, []);
 
+  console.log(product);
+
+
   // Handle status change
   const handleChange = async (id, event) => {
-    const selectedValue = event.target.value; // Get the selected status
+    const selectedValue = event.target.value;
     console.log("Changing status for ID:", id, "to:", selectedValue);
 
     try {
-      // Send the updated status to the backend
       const response = await axios.put(
         `http://localhost:5050/api/order/orders/${id}/status`,
         { status: selectedValue },
@@ -38,65 +41,103 @@ function OrderProduct() {
 
       console.log("Status updated successfully:", response.data);
 
-      // Fetch the updated status from the backend to avoid local inconsistency
+
       const updatedProduct = await axios.get(
         "http://localhost:5050/api/order/findbyowner",
         { withCredentials: true }
       );
 
-      // Update the state with fresh data
-      setProduct(updatedProduct.data.myOrders);
 
-      alert("Status updated successfully!");
+      setProduct(updatedProduct.data.myOrders)
+      toast.success("status update successfully");
+
+
     } catch (error) {
       console.error("Error updating status:", error);
-      alert("Failed to update status. Please try again.");
+      toast.error("product update failed")
     }
   };
 
   return (
-    <div>
-      <table className="border border-collapse w-4/5 mx-auto mt-[30px]">
-        <thead>
-          <tr className="border">
-            <th className="border px-4 py-2">Ordered By</th>
-            <th className="border px-4 py-2">Product Name & Quantity</th>
-            <th className="border px-4 py-2">Price</th>
-            <th className="border px-4 py-2">Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {product.map((item) => (
-            <tr key={item._id}>
-              <td className="border px-4 py-2">
-                <p>Name: {item.firstname} {item.lastname}</p>
-                <p>Phone: {item.phone}</p>
-                <p>District: {item.district}</p>
-                <p>City: {item.city}</p>
-                <p>ZipCode: {item.zip}</p>
-              </td>
-              <td className="border px-4 py-2 text-center text-2xl">
-                {item.book}
-              </td>
-              <td className="border px-4 py-2 text-2xl text-center">
-                {item.totalprice}
-              </td>
-              <td className="border px-4 py-2">
-                <select
-                  onChange={(e) => handleChange(item._id, e)} // Pass ID and event
-                  value={item.status} // Use item.status to reflect the backend value
-                  className="outline-none bg-gray-500 w-full"
-                >
-                  <option value="pending">Pending</option>
-                  <option value="shipped">Shipped</option>
-                  <option value="delivered">Delivered</option>
-                </select>
-              </td>
+    <>
+      <div class="relative flex flex-col w-full h-full overflow-auto text-gray-700 bg-white shadow-md rounded-lg bg-clip-border">
+        <table class="w-full  border-collapse table-auto text-center">
+          <thead>
+            <tr>
+              <th class="p-4 border-b border-slate-200 bg-slate-50">
+                <p class="text-sm font-semibold text-slate-500">BookId</p>
+              </th>
+              <th class="p-4 border-b border-slate-200 bg-slate-50">
+                <p class="text-sm font-semibold text-slate-500 text-left">
+                  Delivery Details</p>
+              </th>
+              <th class="p-4 border-b border-slate-200 bg-slate-50">
+                <p class="text-sm font-semibold text-slate-500">Book Name and Qty</p>
+              </th>
+              <th class="p-4 border-b border-slate-200 bg-slate-50">
+                <p class="text-sm font-semibold text-slate-500">Amount</p>
+              </th>
+              <th class="p-4 border-b border-slate-200 bg-slate-50">
+                <p class="text-sm font-semibold text-slate-500">Status</p>
+              </th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+          </thead>
+          <tbody>
+            {product?.length === 0 ? (
+              <tr>
+                <td colSpan="5" class="p-4 text-center text-slate-500">
+                  No orders yet.
+                </td>
+              </tr>
+            ) : (
+              product?.map((item) => (
+                <tr key={item._id} class="hover:bg-slate-50 border-b border-slate-200">
+                  <td class="p-4 text-sm font-semibold text-slate-800">
+                    {item._id.slice(-5)}
+                  </td>
+
+                  <td className="px-4 py-2 text-left">
+                    <p className='font-onest text-[16px] capitalize'>Name: {item.firstname} {item.lastname}</p>
+                    <p className='font-onest text-[16px] capitalize'>Phone: {item.phone}</p>
+                    <p className='font-onest text-[16px] capitalize'>District: {item.district}</p>
+                    <p className='font-onest text-[16px] capitalize'>City: {item.city}</p>
+                    <p className='font-onest text-[16px] capitalize'>ZipCode: {item.zip}</p>
+                  </td>
+
+
+                  <td class="p-4 text-sm text-black/75 font-oswald font-bold text-center">
+                    {item.book?.map((book, index) => (
+                      <div key={index}>{book.toUpperCase()}</div>
+                    ))}
+                  </td>
+                  <td class="p-4 text-sm text-slate-500">{item.totalprice}<span className="text-2xl ml-2">৳</span></td>
+
+                  <td className=" py-2">
+                    <select
+                      onChange={(e) => handleChange(item._id, e)}
+                      value={item.status}
+                      className="outline-none bg-gray-500"
+                    >
+                      <option value="pending">Pending</option>
+                      <option value="shipped">Shipped</option>
+                      <option value="delivered">Delivered</option>
+                    </select>
+                  </td>
+
+
+
+
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+
+        <div class="flex justify-between items-center px-4 py-3">
+        </div>
+      </div>
+
+    </>
   );
 }
 

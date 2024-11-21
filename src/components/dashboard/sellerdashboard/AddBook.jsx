@@ -29,18 +29,44 @@ function AddBook() {
     setProductImage(e.target.files[0]);
   };
 
+  const validateInputs = () => {
+    if (!inputData.bookname.trim()) {
+      toast.error("Book name is required");
+      return false;
+    }
+    if (!inputData.price || isNaN(inputData.price) || inputData.price <= 0) {
+      toast.error("Enter a valid price");
+      return false;
+    }
+    if (!inputData.semister) {
+      toast.error("Please select a semester");
+      return false;
+    }
+    if (!inputData.department) {
+      toast.error("Please select a department");
+      return false;
+    }
+    if (!inputData.description.trim()) {
+      toast.error("Description cannot be empty");
+      return false;
+    }
+    if (!productImage) {
+      toast.error("Please upload a product image");
+      return false;
+    }
+    return true;
+  };
+
   const handleSubmit = async () => {
+    if (!validateInputs()) return;
+
     const formData = new FormData();
     formData.append("bookname", inputData.bookname);
     formData.append("price", inputData.price);
     formData.append("semister", inputData.semister);
     formData.append("department", inputData.department);
     formData.append("description", inputData.description);
-    if (productImage) {
-      formData.append("productImage", productImage);
-    }
-
-    console.log(formData);
+    formData.append("productImage", productImage);
 
     try {
       const res = await axios.post("http://localhost:5050/api/product/addproduct", formData, {
@@ -57,10 +83,9 @@ function AddBook() {
   };
 
   return (
-    <div
-      className=''>
+    <div>
       <div className='w-[450px] my-[20px] bg-black rounded-lg text-white shadow-2xl shadow-slate-600  mx-auto p-5 flex flex-col gap-y-4 border-2 border-white '>
-        <h1 className='text-4xl text-center mb-4 font-oswald font-bold '>Add Your Book for Sales</h1>
+        <h1 className='text-[30px] text-center font-oswald font-bold '>Add Your Book for Sales</h1>
 
         <div>
           <label htmlFor="name">Enter your BookName</label>
@@ -85,7 +110,7 @@ function AddBook() {
         </div>
 
         <div>
-          <select name="semister" id="semister" onChange={handleChange} className='w-full py-1 px-3 outline-none border border-black rounded bg-transparent border-white'>
+          <select name="semister" id="semister" onChange={handleChange} className='w-full py-1 px-3 outline-none border text-white border-white rounded bg-transparent'>
             <option value="">Enter Semester</option>
             <option value="1st">1st</option>
             <option value="2nd">2nd</option>
@@ -98,7 +123,7 @@ function AddBook() {
         </div>
 
         <div>
-          <select name="department" id="department" onChange={handleChange} className='w-full py-1 px-3 outline-none border border-black rounded bg-transparent border-white'>
+          <select name="department" id="department" onChange={handleChange} className='w-full py-1 px-3 outline-none border text-white rounded bg-transparent border-white'>
             <option value="">Enter Department</option>
             <option value="Computer"> Computer</option>
             <option value="civil">Civil</option>
@@ -120,7 +145,7 @@ function AddBook() {
           <input type="file" name="productImage" onChange={handleImageChange} />
         </div>
 
-        <button onClick={handleSubmit} className="bg-green-600 w-full text-center text-black py-1 px-3 rounded-md  bg-white">
+        <button onClick={handleSubmit} className="bg-white hover:bg-white/75 w-full text-center text-black py-1 px-3 rounded-md  hover:bg-white transition-all duration-700">
           Add Book
         </button>
       </div>

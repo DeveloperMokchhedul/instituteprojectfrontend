@@ -25,7 +25,7 @@ function UserDashboard() {
   }, []);
 
   console.log(order);
-  
+
 
   if (loading) {
     return <Loading />;
@@ -35,7 +35,7 @@ function UserDashboard() {
 
   const handleOrderDelete = async (id) => {
     console.log(id);
-    
+
 
     try {
       const res = await axios.delete(
@@ -58,30 +58,69 @@ function UserDashboard() {
 
 
   return (
-    <div className="flex  flex-col gap-5 w-2/3 mx-auto mt-[20px] roounded-md">
-      {order.length === 0 ? (
-        <p>No orders yet.</p>
-      ) : (
-        order.map((item) => (
-          <div
-            key={item._id}
-            className="flex items-center justify-between bg-slate-300 rounded-md  p-5"
-          >
-            <p>
-              {item.book?.map((book) => (
-                <div className="flex gap-12">{book}</div>
-              ))}
-            </p>
+    <div class="relative flex flex-col w-full h-full overflow-auto text-gray-700 bg-white shadow-md rounded-lg bg-clip-border">
+      <table class="w-full text-left border-collapse table-auto">
+        <thead>
+          <tr>
+            <th class="p-4 border-b border-slate-200 bg-slate-50">
+              <p class="text-sm font-semibold text-slate-500">BookId</p>
+            </th>
+            <th class="p-4 border-b border-slate-200 bg-slate-50">
+              <p class="text-sm font-semibold text-slate-500">Book Name and Qty</p>
+            </th>
+            <th class="p-4 border-b border-slate-200 bg-slate-50">
+              <p class="text-sm font-semibold text-slate-500">Amount</p>
+            </th>
+            <th class="p-4 border-b border-slate-200 bg-slate-50">
+              <p class="text-sm font-semibold text-slate-500">Status</p>
+            </th>
+            <th class="p-4 border-b border-slate-200 bg-slate-50">
+              <p class="text-sm font-semibold text-slate-500">Actions</p>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {order.length === 0 ? (
+            <tr>
+              <td colSpan="5" class="p-4 text-center text-slate-500">
+                No orders yet.
+              </td>
+            </tr>
+          ) : (
+            order.map((item) => (
+              <tr key={item._id} class="hover:bg-slate-50 border-b border-slate-200">
+                <td class="p-4 text-sm font-semibold text-slate-800">
+                  {item._id.slice(-5)}
+                </td>
+                <td class="p-4 text-sm text-slate-500">
+                  {item.book?.map((book, index) => (
+                    <div key={index}>{book.toUpperCase()}</div>
+                  ))}
+                </td>
+                <td class="p-4 text-sm text-slate-500">{item.totalprice}<span className="text-2xl ml-2">৳</span></td>
+                <td class="p-4 text-sm text-slate-500">{item.status}</td>
+                <td class="p-4">
+                  {
+                    item.status === "delivered"?<button  className="w-[120px] bg-green-500 text-white rounded-md px-3 py-1">completed</button>:
+                    <button
+                    onClick={() => handleOrderDelete(item._id)}
+                    class="bg-red-500 text-white rounded-md px-3 py-1 w-[120px] "
+                  >
+                    Cancel Order
+                  </button>
+                  }
+       
+                </td>
+              </tr>
+            ))
+          )}
+        </tbody>
+      </table>
 
-            <p>Total Price: {item.totalprice}</p>
-            <div className="flex gap-3">
-              <button className="bg-yellow-600 px-3 py-2 rounded-md">{item.status}</button>
-              <button onClick={()=>handleOrderDelete(item._id)} className="bg-red-500 text-white rounded-md px-3 py-1">CancelOrder</button>
-            </div>
-          </div>
-        ))
-      )}
+      <div class="flex justify-between items-center px-4 py-3">
+      </div>
     </div>
+
   );
 }
 
