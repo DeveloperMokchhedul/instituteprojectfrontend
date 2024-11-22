@@ -44,7 +44,7 @@ function Registration() {
         
         
         try {
-          const res = await axios.post("http://localhost:5050/api/user/registration", formData,{
+          const res = await axios.post("https://bookcycle-qdl4.onrender.com/api/user/registration", formData,{
             headers:{
               "Content-Type":"multipart/form-data"
             },

@@ -15,7 +15,7 @@ function ShowProduct() {
       try {
         setLoading(true);
         const res = await axios.get(
-          "http://localhost:5050/api/product/products/by-owner",
+          "https://bookcycle-qdl4.onrender.com/api/product/products/by-owner",
           { withCredentials: true }
         );
         setLoading(false);
@@ -31,7 +31,7 @@ function ShowProduct() {
   const handleDelete = async (id) => {
     try {
       const res = await axios.delete(
-        `http://localhost:5050/api/product/deleteproduct/${id}`,
+        `https://bookcycle-qdl4.onrender.com/api/product/deleteproduct/${id}`,
         {
           withCredentials: true,
         }
@@ -119,7 +119,7 @@ function ShowProduct() {
                 </td>
               </tr>
             ) : (
-              product?.map((item) => (
+              product?.reverse().map((item) => (
                 <tr key={item._id} class="hover:bg-slate-50 border-b border-slate-200">
                   <td class="p-4 text-sm font-semibold text-slate-800">
                     {item._id.slice(-5)}

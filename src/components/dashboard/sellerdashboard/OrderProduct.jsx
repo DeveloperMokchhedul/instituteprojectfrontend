@@ -12,7 +12,7 @@ function OrderProduct() {
       setLoading(true);
       try {
         const res = await axios.get(
-          "http://localhost:5050/api/order/findbyowner",
+          "https://bookcycle-qdl4.onrender.com/api/order/findbyowner",
           { withCredentials: true }
         );
         setProduct(res.data.myOrders);
@@ -34,7 +34,7 @@ function OrderProduct() {
 
     try {
       const response = await axios.put(
-        `http://localhost:5050/api/order/orders/${id}/status`,
+        `https://bookcycle-qdl4.onrender.com/api/order/orders/${id}/status`,
         { status: selectedValue },
         { withCredentials: true }
       );
@@ -43,7 +43,7 @@ function OrderProduct() {
 
 
       const updatedProduct = await axios.get(
-        "http://localhost:5050/api/order/findbyowner",
+        "https://bookcycle-qdl4.onrender.com/api/order/findbyowner",
         { withCredentials: true }
       );
 
@@ -90,14 +90,14 @@ function OrderProduct() {
                 </td>
               </tr>
             ) : (
-              product?.map((item) => (
+              product?.reverse()?.map((item) => (
                 <tr key={item._id} class="hover:bg-slate-50 border-b border-slate-200">
                   <td class="p-4 text-sm font-semibold text-slate-800">
                     {item._id.slice(-5)}
                   </td>
 
                   <td className="px-4 py-2 text-left">
-                    <p className='font-onest text-[16px] capitalize'>Name: {item.firstname} {item.lastname}</p>
+                    <p className='font-onest text-[16px] capitalize'>Name: {item.name}</p>
                     <p className='font-onest text-[16px] capitalize'>Phone: {item.phone}</p>
                     <p className='font-onest text-[16px] capitalize'>District: {item.district}</p>
                     <p className='font-onest text-[16px] capitalize'>City: {item.city}</p>

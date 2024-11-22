@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 function AddBook() {
+  const [loading, setLoading]= useState(false)
   const [inputData, setInputData] = useState({
     bookname: "",
     price: "",
@@ -58,6 +59,7 @@ function AddBook() {
   };
 
   const handleSubmit = async () => {
+   
     if (!validateInputs()) return;
 
     const formData = new FormData();
@@ -69,18 +71,22 @@ function AddBook() {
     formData.append("productImage", productImage);
 
     try {
-      const res = await axios.post("http://localhost:5050/api/product/addproduct", formData, {
+      setLoading(true)
+      const res = await axios.post("https://bookcycle-qdl4.onrender.com/api/product/addproduct", formData, {
         withCredentials: true,
       });
 
       if (res.status === 201) {
+        setLoading(false)
         toast.success(res.data.message);
         navigate('/');
       }
     } catch (error) {
       toast.error(error.response?.data?.message || error.message);
+      setLoading(false)
     }
   };
+  
 
   return (
     <div>
@@ -110,8 +116,8 @@ function AddBook() {
         </div>
 
         <div>
-          <select name="semister" id="semister" onChange={handleChange} className='w-full py-1 px-3 outline-none border text-white border-white rounded bg-transparent'>
-            <option value="">Enter Semester</option>
+          <select name="semister" id="semister" onChange={handleChange} className='w-full py-1 px-3  outline-none border text-slate-500 border-white rounded bg-transparent'>
+            <option className='text-black' value="">Enter Semester</option>
             <option value="1st">1st</option>
             <option value="2nd">2nd</option>
             <option value="3rd">3rd</option>
@@ -123,8 +129,8 @@ function AddBook() {
         </div>
 
         <div>
-          <select name="department" id="department" onChange={handleChange} className='w-full py-1 px-3 outline-none border text-white rounded bg-transparent border-white'>
-            <option value="">Enter Department</option>
+          <select name="department" id="department" onChange={handleChange} className='w-full py-1 px-3 outline-none border text-slate-500 bg-black rounded bg-transparent border-white'>
+            <option className='text-black' value="">Enter Department</option>
             <option value="Computer"> Computer</option>
             <option value="civil">Civil</option>
             <option value="electrical">Electrical</option>
@@ -146,7 +152,9 @@ function AddBook() {
         </div>
 
         <button onClick={handleSubmit} className="bg-white hover:bg-white/75 w-full text-center text-black py-1 px-3 rounded-md  hover:bg-white transition-all duration-700">
-          Add Book
+         {
+          loading?"Loading":" Add Book"
+         }
         </button>
       </div>
     </div>

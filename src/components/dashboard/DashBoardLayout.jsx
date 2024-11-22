@@ -16,8 +16,8 @@ function DashBoardLayout({ children }) {
   return (
     <div className="flex ">
       <div
-        style={{ width: size }}
-        className="fixed left-0 top-0 z-50 h-screen bg-black px-5 pt-3"
+        // style={{ width: size }}
+        className="fixed w-[120px] md:w-[280px] left-0 top-0 z-50 h-screen bg-black px-5 pt-3"
       >
         {currentUserRole === "user" ? (
           <div className="mt-[25px]">
@@ -80,7 +80,7 @@ function DashBoardLayout({ children }) {
           </div>
         )}
       </div>
-      <div className="ml-[320px] w-full h-screen">
+      <div className="ml-[130px] md:ml-[320px] w-full h-screen">
         <Outlet />
       </div>
     </div>

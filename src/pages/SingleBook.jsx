@@ -3,13 +3,13 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Loading from "./Loading";
 import { useDispatch, useSelector } from "react-redux";
-import {addToCart} from '../redux/slice/cartSlice'
+import { addToCart } from '../redux/slice/cartSlice'
 import { toast } from "react-toastify";
 
 function SingleBook() {
   const dispatch = useDispatch()
   const [singleBook, setSingleBook] = useState();
-  const [loading,setLoading] = useState(false)
+  const [loading, setLoading] = useState(false)
   const [isUser, setIsUser] = useState(false)
   const { currentUser, isAuthenticated } = useSelector((state) => state.user);
   const { id } = useParams();
@@ -27,7 +27,7 @@ function SingleBook() {
     const singlebook = async () => {
       setLoading(true)
       const res = await axios.get(
-        `http://localhost:5050/api/product/singleproduct/${id}`
+        `https://bookcycle-qdl4.onrender.com/api/product/singleproduct/${id}`
       );
       setSingleBook(res.data.data);
       setLoading(false)
@@ -35,7 +35,7 @@ function SingleBook() {
     singlebook();
   }, []);
 
-  if(loading){
+  if (loading) {
     return <Loading />
   }
 
@@ -66,9 +66,17 @@ function SingleBook() {
           </h1>
           <p>{singleBook?.description}</p>
 
-          <button onClick={()=>handleCart(singleBook)} className="bg-red-400 px-2 py-1 rounded-md text-white mt-[20px] w-full hover:bg-black hover:text-white transition-all duration-500 font-oswald font-bold">
-            Add to Cart
-          </button>
+
+          {
+            singleBook?.isSold ? <p className="bg-red-400 px-2 text-center py-1 rounded-md text-white mt-[20px] w-full hover:bg-black hover:text-white transition-all duration-500 font-oswald font-bold">Not Available</p> :
+              <button
+                onClick={() => handleCart(product)}
+                className={` bg-red-400 px-2 py-1 rounded-md text-white mt-[20px] w-full hover:bg-black hover:text-white transition-all duration-500 font-oswald font-bold`}
+              >
+                Add to Cart
+              </button>
+          }
+
         </div>
       </div>
 

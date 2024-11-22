@@ -55,11 +55,9 @@ function Navbar() {
   return (
     <>
       <header
-        className={`z-50 w-full ${
-          scrolled ? "bg-bgPrimary" : "bg-transparent"
-        } transition-all duration-700 sticky ${
-          dashboard ? "pl-[280px]" : ""
-        } border-b shadow-sm border-slate-300 top-0 left-0 right-0`}
+        className={`z-50 w-full ${scrolled ? "bg-bgPrimary" : "bg-transparent"
+          } transition-all duration-700 sticky ${dashboard ? "pl-[280px]" : ""
+          } border-b shadow-sm border-slate-300 top-0 left-0 right-0`}
       >
         <Container className="pt-[23px] pb-[18px]">
           <div className="flex justify-between items-center">
@@ -83,9 +81,8 @@ function Navbar() {
 
             {/* Mobile Menu */}
             <div
-              className={`md:hidden absolute top-0 left-0 right-0 h-screen transition-all duration-500 transform ${
-                ismenu ? "translate-x-0 bg-[#333333]" : "-translate-x-full"
-              } z-40 flex flex-col items-center gap-5`}
+              className={`md:hidden absolute top-0 left-0 right-0 h-screen transition-all duration-500 transform ${ismenu ? "translate-x-0 bg-[#333333]" : "-translate-x-full"
+                } z-40 flex flex-col items-center gap-5`}
             >
               {ismenu && (
                 <ul className="pt-[100px] flex flex-col gap-[30px] text-[14px] leading-[18px] text-gray">
@@ -114,10 +111,9 @@ function Navbar() {
                     <NavLink
                       to={item.path}
                       className={({ isActive }) =>
-                        `font-onest text-secondary md:text-[12px] uppercase font-oswald lg:text-[14px] leading-[17px] ${
-                          isActive
-                            ? "text-titleColor border-b-4 border-titleColor pb-[10px]"
-                            : "text-black"
+                        `font-onest text-secondary md:text-[12px] uppercase font-oswald lg:text-[14px] leading-[17px] ${isActive
+                          ? "text-titleColor border-b-4 border-titleColor pb-[10px]"
+                          : "text-black"
                         }`
                       }
                     >
@@ -169,7 +165,7 @@ function Navbar() {
                   onClick={() => setProfile(false)}
                   className="w-[150px] h-[100px] absolute top-[58px]   rounded-b-3xl -right-5 text-center text-black text-[16px] font-bold font-oswald pt-1 flex flex-col gap-3"
                 >
-                  <button className="hover:text-white px-5 py-1 hover:bg-black rounded-full  transition-all duration-700 " onClick={()=>navigate("/dashboard")} >Dashboard</button>
+                  <button className="hover:text-white px-5 py-1 hover:bg-black rounded-full  transition-all duration-700 " onClick={() => navigate("/dashboard")} >Dashboard</button>
                   <button className="hover:text-white px-5 py-1 hover:bg-black rounded-full  transition-all duration-700 " onClick={handleLogOut}>Logout</button>
                 </div>
               )}

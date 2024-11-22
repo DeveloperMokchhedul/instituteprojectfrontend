@@ -11,7 +11,7 @@ function UserDashboard() {
     const findOrderByUser = async () => {
       setLoading(true);
       try {
-        const res = await axios.get("http://localhost:5050/api/order/find", {
+        const res = await axios.get("https://bookcycle-qdl4.onrender.com/api/order/find", {
           withCredentials: true,
         });
         setOrder(res.data.data);
@@ -39,7 +39,7 @@ function UserDashboard() {
 
     try {
       const res = await axios.delete(
-        `http://localhost:5050/api/order/delete/${id}`,
+        `https://bookcycle-qdl4.onrender.com/api/order/delete/${id}`,
         {
           withCredentials: true,
         }
@@ -87,7 +87,7 @@ function UserDashboard() {
               </td>
             </tr>
           ) : (
-            order.map((item) => (
+            order?.reverse().map((item) => (
               <tr key={item._id} class="hover:bg-slate-50 border-b border-slate-200">
                 <td class="p-4 text-sm font-semibold text-slate-800">
                   {item._id.slice(-5)}
