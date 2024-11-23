@@ -152,7 +152,7 @@ function ShowProduct() {
                       </Link>
                       
                       {
-                        update?<Update />:"delete"
+                        update?<Update />:""
                       }
                       <button onClick={() => handleDelete(item._id)}>
                         <MdDeleteForever className="text-2xl" />
