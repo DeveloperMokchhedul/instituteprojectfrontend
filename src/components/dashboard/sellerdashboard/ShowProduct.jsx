@@ -4,10 +4,13 @@ import { MdDeleteForever } from "react-icons/md";
 import { FiEdit } from "react-icons/fi";
 import Loading from "../../../pages/Loading";
 import { toast } from "react-toastify";
+import Update from "./Update";
+import { Link } from "react-router-dom";
 
 function ShowProduct() {
   const [product, setProduct] = useState();
   const [loading, setLoading] = useState(false);
+  const [update, setUpdate] = useState(false)
 
   useEffect(() => {
     const ShowAllProduct = async () => {
@@ -142,9 +145,15 @@ function ShowProduct() {
 
                   <td className="px-4 py-2 ">
                     <div className="flex gap-4 items-center justify-center ">
-                      <button className="">
-                        <FiEdit className="text-2xl" />{" "}
-                      </button>
+                      
+                      <Link to={`/dashboard/seller/product/update/${item._id}`}>
+                      
+                        <FiEdit className="text-2xl" />
+                      </Link>
+                      
+                      {
+                        update?<Update />:"delete"
+                      }
                       <button onClick={() => handleDelete(item._id)}>
                         <MdDeleteForever className="text-2xl" />
                       </button>

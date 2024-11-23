@@ -22,6 +22,7 @@ import ShowProduct from "./components/dashboard/sellerdashboard/ShowProduct";
 import OrderProduct from "./components/dashboard/sellerdashboard/OrderProduct";
 import Footer from "./components/Footer";
 import { useSelector } from "react-redux";
+import Update from "./components/dashboard/sellerdashboard/Update";
 function App() {
   const { currentUser } = useSelector((state) => state.user);
   const role = currentUser?.data?.data?.user?.role || "guest";
@@ -62,7 +63,9 @@ function App() {
 
           <Route path="/dashboard/seller/addproduct" element={<AddBook />} />
           <Route path="/dashboard/seller/product" element={<ShowProduct />} />
+          <Route path="/dashboard/seller/product/update/:id" element={<Update />} />
           <Route path="/dashboard/seller/order" element={<OrderProduct />} />
+          <Route path="/dashboard/user/order" element={<UserDashboard />} />
           <Route path="/dashboard/user/order" element={<UserDashboard />} />
         </Route>
 
