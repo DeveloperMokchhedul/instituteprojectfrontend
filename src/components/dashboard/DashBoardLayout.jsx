@@ -64,7 +64,7 @@ function DashBoardLayout({ children }) {
 
             <div className="mt-[30px] flex flex-col gap-10 items-center">
               <IoIosAddCircleOutline onClick={() => navigate("/dashboard/seller/addproduct")} className="text-white text-2xl text-center md:hidden" />
-              <IoIosAddCircleOutline onClick={() => navigate("/dashboard/seller/product")} className="text-white text-2xl text-center md:hidden" />
+              <MdEditSquare onClick={() => navigate("/dashboard/seller/product")} className="text-white text-2xl text-center md:hidden" />
               <FaFirstOrder onClick={() => navigate("/dashboard/seller/order")} className="text-white text-2xl text-center md:hidden" />
         
 
