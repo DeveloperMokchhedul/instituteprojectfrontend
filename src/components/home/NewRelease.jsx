@@ -66,60 +66,62 @@ function NewRelease() {
                   .reverse()
                   .map((product) => (
                     <div
-                    key={product._id}
-                    className=" col-span-12 sm:col-span-6 md:col-span-4 xl:col-span-3  p-5 rounded-md shadow-cardShadow hover:scale-95 transition-all duration-700 hover:text-white hover:bg-black"
-                  >
-                    <div className="flex justify-between pb-5 items-center relative ">
-                      <p className="text-[20px] font-bold rounded-sm pb-2">
-                        {product.semister || "Unknown Semester"}
-                      </p>
-    
-                      <div className=" absolute top-4 left-[70px]  ">
-                        {product.isSold ? (<p className="font-oswald font-bold text-red-600 text-xl z-50 hover:scale-125">SOLD OUT</p>) : ""}
-    
+                      key={product._id}
+                      className=" col-span-12 sm:col-span-6 md:col-span-4 xl:col-span-3  p-5 rounded-md shadow-cardShadow transition-all duration-700 hover:scale-95"
+                    >
+                      <div className="flex justify-between pb-5 items-center relative ">
+                        <p className="text-[20px] font-bold rounded-sm pb-2">
+                          {product.semister || "Unknown Semester"}
+                        </p>
+
+                        <div className=" absolute top-4 left-[70px]  ">
+                          {product.isSold ? (<p className="font-oswald font-bold text-red-600 text-xl z-50 hover:scale-125">SOLD OUT</p>) : ""}
+
+                        </div>
+
+
+
+                        <p className="text-[14px] font-bold capitalize rounded-sm pb-2">
+                          {product.department || "Unknown Department"}
+                        </p>
                       </div>
-    
-    
-    
-                      <p className="text-[14px] font-bold capitalize rounded-sm pb-2">
-                        {product.department || "Unknown Department"}
-                      </p>
+                      <img
+                        className="w-[150px] h-[150px] object-cover object-top mx-auto rounded-lg hover:scale-105 transition-all duration-1000"
+                        src={product.productImage || "/default-image.jpg"}
+                        alt={product.bookname || "Book Image"}
+                      />
+                      <div className="flex flex-col gap-2 mt-3">
+                        <p className="mt-[5px] font-bold text-center text-[20px] sm:text-[20px] md:text-[17px] lg:text-[22px] capitalize">
+                          {product.bookname.slice(0, 20) || "Unknown Book"}
+                        </p>
+                        <p className="font-semibold text-center opacity-50 text-[12px] sm:text-[12px] md:text-[12px] lg:text-[16px]">
+                          {product.description?.slice(0, 50) || "No description"}...
+                        </p>
+                        <p className="text-3xl text-center">
+                          {product.price || "N/A"}{" "}
+                          <span className="text-4xl text-red-500">৳</span>
+                        </p>
+                      </div>
+
+                      <div className="flex justify-between px-3 my-3 pt-4 w-full gap-1">
+                        <Link
+                          to={`/books/${product._id}`}
+                          className="bg-slate-500 px-2 py-1 rounded-md text-white w-[50%] font-bold text-[10px] md:text-[11px] lg:text-[15px]  text-center hover:bg-slate-600 hover:text-white transition-all duration-500"
+                        >
+                          Show details
+                        </Link>
+                        {
+                          product.isSold ? <p className="bg-red-400 px-2 py-1 rounded-md cursor-pointer  text-white w-[50%] font-bold text-[9px] md:text-[10px] lg:text-[15px] text-center hover:bg-white hover:text-black transition-all duration-500">Not Available</p> :
+                            <button
+                              onClick={() => handleCart(product)}
+                              className={` bg-slate-500 px-2 py-1 rounded-md  text-white w-[50%] font-bold text-[10px] md:text-[11px] lg:text-[15px] text-center hover:bg-slate-600 hover:text-white transition-all duration-500`}
+                            >
+                              Add to Cart
+                            </button>
+                        }
+                      </div>
+
                     </div>
-                    <img
-                      className="w-[150px] h-[150px] object-cover object-top mx-auto rounded-lg hover:scale-125 transition-all duration-300"
-                      src={product.productImage || "/default-image.jpg"}
-                      alt={product.bookname || "Book Image"}
-                    />
-                    <div className="flex flex-col gap-2 mt-3">
-                      <p className="mt-[5px] font-bold text-center text-[20px] sm:text-[20px] md:text-[17px] lg:text-[22px] capitalize">
-                        {product.bookname.slice(0, 20) || "Unknown Book"}
-                      </p>
-                      <p className="font-semibold text-center opacity-50 text-[12px] sm:text-[12px] md:text-[12px] lg:text-[16px]">
-                        {product.description?.slice(0, 50) || "No description"}...
-                      </p>
-                      <p className="text-3xl text-center">
-                        {product.price || "N/A"}{" "}
-                        <span className="text-4xl text-red-500">৳</span>
-                      </p>
-                    </div>
-                    <div className="flex justify-between px-3 my-3 pt-4 w-full gap-1">
-                      <Link
-                        to={`/books/${product._id}`}
-                        className="bg-green-400 px-2 py-1 rounded-md text-white w-[50%] font-bold text-[10px] md:text-[11px] lg:text-[15px]  text-center hover:bg-white hover:text-black transition-all duration-500"
-                      >
-                        Show details
-                      </Link>
-                      {
-                        product.isSold ? <p className="bg-red-400 px-2 py-1 rounded-md cursor-pointer  text-white w-[50%] font-bold text-[9px] md:text-[10px] lg:text-[15px] text-center hover:bg-white hover:text-black transition-all duration-500">Not Available</p> :
-                          <button
-                            onClick={() => handleCart(product)}
-                            className={` bg-red-400 px-2 py-1 rounded-md  text-white w-[50%] font-bold text-[10px] md:text-[11px] lg:text-[15px] text-center hover:bg-white hover:text-black transition-all duration-500`}
-                          >
-                            Add to Cart
-                          </button>
-                      }
-                    </div>
-                  </div>
                   ))
               ) : (
                 <p className="col-span-12 text-center text-gray-500">
