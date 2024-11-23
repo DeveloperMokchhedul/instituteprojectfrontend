@@ -23,7 +23,7 @@ function DashBoardLayout({ children }) {
     console.log(role);
     try {
       const res = await axios.put(
-        "http://localhost:5050/api/user/update/role",
+        "https://bookcycle-qdl4.onrender.com/api/user/update/role",
         { role },
         { withCredentials: true }
       );
@@ -42,7 +42,7 @@ function DashBoardLayout({ children }) {
   const handleSellerDashboard = async(role)=>{
     try {
       const res = await axios.put(
-        "http://localhost:5050/api/user/update/role",
+        "https://bookcycle-qdl4.onrender.com/api/user/update/role",
         { role },
         { withCredentials: true }
       );
