@@ -73,32 +73,101 @@ function Navbar() {
                 className="text-white text-2xl z-50 md:hidden"
               />
             ) : (
-              <GiHamburgerMenu
-                onClick={() => setIsMenu(true)}
-                className="text-white text-2xl z-50 md:hidden"
-              />
+              <>
+                <div className="flex gap-5 md:hidden">
+                  <div className="relative">
+                    <Link to={"/cart"}>
+                      <CiShoppingCart className="text-3xl" />
+                    </Link>
+                    <div className="w-[25px] h-[25px] bg-red-400 rounded-full absolute -top-3 -right-2">
+                      <p className="flex items-center justify-center">
+                        {cartItem?.length || 0}
+                      </p>
+                    </div>
+                  </div>
+
+                  <GiHamburgerMenu
+                    onClick={() => setIsMenu(true)}
+                    className="text-slate-500 text-2xl z-50 md:hidden"
+                  />
+                </div>
+              </>
             )}
 
             {/* Mobile Menu */}
-            <div
-              className={`md:hidden absolute top-0 left-0 right-0 h-screen transition-all duration-500 transform ${ismenu ? "translate-x-0 bg-[#333333]" : "-translate-x-full"
+            <div 
+              className={`md:hidden absolute top-0 left-0 right-0 h-screen transition-all duration-500 transform ${ismenu ? "translate-x-0 bg-[#333333]/75" : "-translate-x-full"
                 } z-40 flex flex-col items-center gap-5`}
             >
               {ismenu && (
-                <ul className="pt-[100px] flex flex-col gap-[30px] text-[14px] leading-[18px] text-gray">
-                  {NavbarData?.map((item) => (
-                    <li key={item.id} onClick={() => setIsMenu(false)}>
-                      <NavLink
-                        to={item.path}
-                        className="font-onest text-white text-[14px] leading-[17px] transition-all duration-300 hover:scale-110 "
+                <>
+                  <ul className="pt-[100px] flex flex-col gap-[30px] text-[14px] leading-[18px] text-gray">
+                    {NavbarData?.map((item) => (
+                      <li className="text-center" key={item.id} onClick={() => setIsMenu(false)}>
+                        <NavLink
+                          to={item.path}
+                          className="font-onest uppercase text-white text-[14px] leading-[17px] transition-all duration-300 hover:scale-110 "
+                        >
+                          {item.label}
+                        </NavLink>
+                      </li>
+                    ))}
+                  </ul>
+
+
+                  <div className=" gap-5 flex mx-auto flex-col items-center justify-center mt-[120px] md:hidden ">
+                    {/* User Profile */}
+                    {currentUser?.data?.data?.user ? (
+                      <img
+                        onClick={() => setProfile(!profile)}
+                        className="w-[40px] h-[40px] border rounded-full"
+                        src={currentUser?.data?.data?.user?.image || "/default-profile.png"}
+                        alt="User Profile"
+                      />
+                    ) : (
+                      ""
+                    )}
+
+                    {!currentUser && (
+                      <div className="flex gap-3">
+                        <button className="bg-black hover:bg-slate-600 text-white px-3 py-1 rounded-md">
+                          <Link to={"/registration"} onClick={()=>setIsMenu(false)}>SignUp</Link>
+                        </button>
+                        <button className="bg-black transition-all duration-400 hover:bg-slate-600 text-white px-3 py-1 rounded-md">
+                          <Link to={"/signin"} onClick={()=>setIsMenu(false)}>Login</Link>
+                        </button>
+                      </div>
+                    )}
+
+                    {currentUser && (
+                      <div
+                        onClick={() => setIsMenu(false)}
+                        className=" items-center justify-center text-center text-black text-[16px] font-bold font-oswald pt-1 flex flex-col gap-3"
                       >
-                        {item.label}
-                      </NavLink>
-                    </li>
-                  ))}
-                </ul>
+                        <button className= "text-white font-bold rounded-full  transition-all duration-700 " onClick={handleLogOut}>Logout</button>
+                      </div>
+                    )}
+                  </div>
+
+
+
+
+                </>
               )}
             </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             {/* Desktop Menu */}
             <div className="hidden md:flex">
@@ -111,7 +180,7 @@ function Navbar() {
                     <NavLink
                       to={item.path}
                       className={({ isActive }) =>
-                        `font-onest text-secondary md:text-[12px] uppercase font-oswald lg:text-[14px] leading-[17px] ${isActive
+                        ` text-secondary md:text-[12px] uppercase font-oswald lg:text-[14px] leading-[17px] ${isActive
                           ? "text-titleColor border-b-4 border-titleColor pb-[10px]"
                           : "text-black"
                         }`
@@ -125,7 +194,7 @@ function Navbar() {
             </div>
 
             {/* Profile and Cart */}
-            <div className="flex gap-5 items-center relative hidden md:flex">
+            <div className=" gap-5 items-center relative hidden md:flex">
               <div className="relative">
                 <Link to={"/cart"}>
                   <CiShoppingCart className="text-3xl" />
@@ -146,7 +215,7 @@ function Navbar() {
                   alt="User Profile"
                 />
               ) : (
-                <CgProfile className="text-3xl" />
+                ""
               )}
 
               {!currentUser && (
