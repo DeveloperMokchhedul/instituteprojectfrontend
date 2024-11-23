@@ -56,6 +56,10 @@ function UserDashboard() {
   // http://localhost:5050/api/order/delete
 
 
+    if (order.length==0) {
+      return <p className="text-center mt-[40px]">No order Yet</p>
+      
+    }
 
   return (
     <div class="relative flex flex-col w-full h-full overflow-auto text-gray-700 bg-white shadow-md rounded-lg bg-clip-border">
@@ -80,14 +84,7 @@ function UserDashboard() {
           </tr>
         </thead>
         <tbody>
-          {order.length === 0 ? (
-            <tr>
-              <td colSpan="5" class="p-4 text-center text-slate-500">
-                No orders yet.
-              </td>
-            </tr>
-          ) : (
-            order?.reverse().map((item) => (
+          {order?.reverse().map((item) => (
               <tr key={item._id} class="hover:bg-slate-50 border-b border-slate-200">
                 <td class="p-4 text-sm font-semibold text-slate-800">
                   {item._id.slice(-5)}
@@ -113,7 +110,7 @@ function UserDashboard() {
                 </td>
               </tr>
             ))
-          )}
+          }
         </tbody>
       </table>
 

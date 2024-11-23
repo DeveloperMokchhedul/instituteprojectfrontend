@@ -33,19 +33,20 @@ function DashBoardLayout({ children }) {
               <RiSlideshow4Fill onClick={() => navigate("/dashboard")} className="text-white text-2xl text-center md:hidden" />
 
             </div>
-            <div className="flex-col mt-[30px] hidden md:flex">
-              <button
-                onClick={() => navigate("/dashboard/user/order")}
-                className="px-3 py-1 rounded-lg bg-white mt-[20px] md:flex "
-              >
-                show order
-              </button>
 
+            
+            <div className=" flex-col hidden md:flex  ">
               <button
-                onClick={() => navigate("/dashboard/user/order")}
-                className="px-3 py-1 rounded-lg bg-white mt-[20px] md:flex "
+                 onClick={() => navigate("/dashboard/user/order")}
+                className="px-3 py-1 rounded-lg bg-white mt-[20px] "
               >
-                UpdateProfile
+                Show Order
+              </button>
+              <button
+                onClick={() => navigate("/dashboard")}
+                className="px-3 py-1 rounded-lg bg-white mt-[20px] "
+              >
+                Update Profile
               </button>
             </div>
 
@@ -62,9 +63,9 @@ function DashBoardLayout({ children }) {
             <h1 className="text-[10px] text-center text-white font-bold font-oswald shadow-cardShadow md:text-2xl">Seller Dashboard</h1>
 
             <div className="mt-[30px] flex flex-col gap-10 items-center">
-              <IoIosAddCircleOutline onClick={() => navigate("/dashboard/user/order")} className="text-white text-2xl text-center md:hidden" />
-              <IoIosAddCircleOutline onClick={() => navigate("/dashboard/user/order")} className="text-white text-2xl text-center md:hidden" />
-              <FaFirstOrder onClick={() => navigate("/dashboard/user/order")} className="text-white text-2xl text-center md:hidden" />
+              <IoIosAddCircleOutline onClick={() => navigate("/dashboard/seller/addproduct")} className="text-white text-2xl text-center md:hidden" />
+              <IoIosAddCircleOutline onClick={() => navigate("/dashboard/seller/product")} className="text-white text-2xl text-center md:hidden" />
+              <FaFirstOrder onClick={() => navigate("/dashboard/seller/order")} className="text-white text-2xl text-center md:hidden" />
         
 
             </div>
