@@ -153,7 +153,7 @@ function AddBook() {
 
         <button onClick={handleSubmit} className="bg-white hover:bg-white/75 w-full text-center text-black py-1 px-3 rounded-md  hover:bg-white transition-all duration-700">
          {
-          loading?"Loading":" Add Book"
+          loading?"Loading...":" Add Book"
          }
         </button>
       </div>

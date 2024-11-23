@@ -5,6 +5,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 function Registration() {
+  const [loading, setLoading]= useState(false)
     const [inputData, setInputData] = useState({
         name: "",
         email: "",
@@ -44,6 +45,7 @@ function Registration() {
         
         
         try {
+          setLoading(true)
           const res = await axios.post("https://bookcycle-qdl4.onrender.com/api/user/registration", formData,{
             headers:{
               "Content-Type":"multipart/form-data"
@@ -54,12 +56,14 @@ function Registration() {
           
           if (res.status === 201) {
             navigate("/signin");
+            setLoading(false)
             
           
             // toast.success(res.data.message);
           }
         } catch (error) {
           toast.error(error.response?.message || error.message);
+          setLoading(false)
         }
       };
     
@@ -152,6 +156,9 @@ function Registration() {
               onClick={handleSubmit}
               className="bg-green-600 w-full text-center text-white py-1 px-3 rounded-md "
             >
+            {
+              loading?"Loading ...":"Register"
+            }
               Register
             </button>
     
