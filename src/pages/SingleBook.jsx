@@ -44,7 +44,7 @@ function SingleBook() {
   const handleCart = (product) => {
     console.log("product added in cart");
     if (isUser) {
-      isUser && dispatch(addToCart(product));
+      dispatch(addToCart(product));
       toast.success("Book Added successfully");
     } else {
       toast.error("only User can add to cart");
