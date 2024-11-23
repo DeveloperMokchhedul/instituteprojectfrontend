@@ -47,6 +47,11 @@ function ShowProduct() {
     return <Loading />;
   }
 
+  if (!product) {
+    return <p className="text-center mt-[40px]"> product not Added yet</p>
+    
+  }
+
   return (
     <>
       {/* <table className="border border-collapse w-4/5 mx-auto mt-[30px]">

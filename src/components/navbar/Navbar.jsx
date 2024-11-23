@@ -56,7 +56,7 @@ function Navbar() {
     <>
       <header
         className={`z-50 w-full ${scrolled ? "bg-bgPrimary" : "bg-transparent"
-          } transition-all duration-700 sticky ${dashboard ? "pl-[280px]" : ""
+          } transition-all duration-700 sticky ${dashboard ? "md:pl-[280px]" : ""
           } border-b shadow-sm border-slate-300 top-0 left-0 right-0`}
       >
         <Container className="pt-[23px] pb-[18px]">

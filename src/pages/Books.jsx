@@ -99,8 +99,8 @@ function Books() {
                     {product.semister || "Unknown Semester"}
                   </p>
 
-                  <div className=" absolute top-24 ">
-                    {product.isSold ? (<p className="font-oswald font-bold text-red-600 text-5xl z-50 hover:scale-125">SOLD OUT</p>) : ""}
+                  <div className=" absolute top-4 left-[70px] ">
+                    {product.isSold ? (<p className="font-oswald font-bold text-red-600 text-xl z-50 hover:scale-125">SOLD OUT</p>) : ""}
 
                   </div>
 
