@@ -55,6 +55,7 @@ function Registration() {
           console.log(" response data is ", res);
           
           if (res.status === 201) {
+            toast.success("Registration successfully")
             navigate("/signin");
             setLoading(false)
             
@@ -159,7 +160,6 @@ function Registration() {
             {
               loading?"Loading ...":"Register"
             }
-              Register
             </button>
     
             <p>
