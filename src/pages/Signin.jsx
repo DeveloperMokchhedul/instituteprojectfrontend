@@ -43,7 +43,7 @@ function Signin() {
   
         if (res.status === 200) {
           toast.success("Login successful!");
-          navigate("/"); // Adjust navigation as needed
+          navigate("/"); 
         }
         
         
@@ -58,11 +58,7 @@ function Signin() {
     }
   };
 
-//   useEffect(() => {
-//     if (currentUser) {
-//       navigate("/");
-//     }
-//   }, [navigate, currentUser]);
+
 
   return (
     <div style={{
