@@ -4,10 +4,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useDispatch } from 'react-redux';
 import { signInSuccess } from "../redux/slice/userSlice";
+import Loading from "./Loading";
 
 
 
 function Signin() {
+  const [loading,setLoading] = useState(false)
 
 
   const [input, setInput] = useState({
@@ -32,6 +34,7 @@ function Signin() {
   const handleSubmit = async () => {
 
     try {
+      setLoading(true)
         const res = await axios.post("https://bookcycle-qdl4.onrender.com/api/user/login",input,{
           headers:{
             "Content-Type":"application/json"
@@ -42,6 +45,7 @@ function Signin() {
         dispatch(signInSuccess(res))
   
         if (res.status === 200) {
+          setLoading(false)
           toast.success("Login successful!");
           navigate("/"); 
         }
@@ -52,11 +56,13 @@ function Signin() {
     } catch (err) {
         console.log("i need to findout why login failed");
         console.log(err);
+        setLoading(false)
         
       toast.error(err.response?.message || "Login failed");
       console.error(err);
     }
   };
+
 
 
 
@@ -103,12 +109,16 @@ function Signin() {
         </div>
 
         <button onClick={handleSubmit} className='bg-green-600 w-full text-center text-white py-1 px-3 rounded-md'>
-          Login
+        {
+            loading ? "Loading..." :"Login"
+          }
         </button>
 
         <p>Don't have an account? 
           <Link className="text-green-700 ml-5 bg-green-100 py-1 px-2 rounded-md" to={"/registration"}>
-            Signup
+      
+          SignUp
+            
           </Link>
         </p>
       </div>

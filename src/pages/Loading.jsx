@@ -6,25 +6,14 @@ function Loading() {
       <div className="flex flex-col">
         <div className="flex flex-col">
           <div className="flex flex-row space-x-4">
-            <div
-              className="w-12 h-12 rounded-full animate-spin
-                    border-y border-dashed border-yellow-500 border-t-transparent"
-            ></div>
+        
 
             <div
-              className="w-12 h-12 rounded-full animate-spin
+              className="w-[70px] h-[70px] rounded-full animate-spin
                     border-y-2 border-dashed border-blue-500 border-t-transparent"
             ></div>
 
-            <div
-              className="w-12 h-12 rounded-full animate-spin
-                    border-y-4 border-dashed border-green-500 border-t-transparent"
-            ></div>
-
-            <div
-              className="w-12 h-12 rounded-full animate-spin
-                    border-y-8 border-dashed border-purple-500 border-t-transparent"
-            ></div>
+ 
           </div>
         </div>
       </div>
