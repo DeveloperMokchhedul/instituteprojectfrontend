@@ -53,18 +53,18 @@ function SingleBook() {
 
   return (
     <>
-      <h1 className="text-5xl font-bold uppercase text-center mt-[40px] font-onest">
+      <h1 className="text-[20px] lg:text-5xl font-bold uppercase text-center mt-[20px] lg:mt-[40px] font-onest">
         <span className="">"{singleBook?.bookname}" </span>Book Details
       </h1>
-      <div className="w-3/4 mx-auto grid grid-cols-12 gap-5 my-[100px] items-center">
+      <div className="w-3/4 mx-auto grid grid-cols-12 gap-5 my-[20px] lg:my-[100px] items-center">
         <div className="col-span-12 md:col-span-6">
-          <img className="w-[300px] hover:scale-110 transition-all duration-500 hover:rounded-2xl" src={singleBook?.productImage} />
+          <img className="w-[300px] rounded-lg hover:scale-110 transition-all duration-500 hover:rounded-2xl" src={singleBook?.productImage} />
         </div>
         <div className="col-span-12 md:col-span-6">
-          <h1 className="text-[50px] uppercase font-bold font-oswald">
+          <h1 className="text-[16px] my-[10px]  lg:text-[50px] uppercase font-bold font-oswald">
             {singleBook?.bookname}
           </h1>
-          <p>{singleBook?.description}</p>
+          <p className="text-[10px]  lg:text-[16px]">{singleBook?.description}</p>
 
 
           {
@@ -81,9 +81,9 @@ function SingleBook() {
       </div>
 
       <div className="w-2/4 mx-auto ">
-        <h1 className="text-3xl">Book Posted by:</h1>
-        <div className="flex gap-10 items-center mt-[30px] justify-center">
-          <div className="font-onest font-semibold">
+        <h1 className="text-[14px] lg:text-3xl">Book Posted by:</h1>
+        <div className="flex gap-10 items-center mt-[30px] justify-center flex-col md:flex-row">
+          <div className="font-onest font-semibold text-center md:text-left">
             <p className="">{singleBook?.productOwner?.name}</p>
             <p>{singleBook?.productOwner?.email}</p>
             <p>{singleBook?.productOwner?.phone}</p>
