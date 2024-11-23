@@ -16,10 +16,29 @@ const userSlice = createSlice({
         signOut:(state)=>{
             state.currentUser = null,
             state.isAuthenticated = false
-        }
+        },
+
+        updateUserRole: (state, action) => {
+            if (state.currentUser?.data?.data?.user) {
+              state.currentUser = {
+                ...state.currentUser,
+                data: {
+                  ...state.currentUser.data,
+                  data: {
+                    ...state.currentUser.data.data,
+                    user: {
+                      ...state.currentUser.data.data.user,
+                      role: action.payload, 
+                    },
+                  },
+                },
+              };
+            }
+          },
+          
     }
 })
 
 
-export const {signInSuccess,signOut} = userSlice.actions
+export const {signInSuccess,signOut,updateUserRole} = userSlice.actions
 export default userSlice.reducer

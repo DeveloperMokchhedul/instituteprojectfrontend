@@ -14,7 +14,6 @@ function Signin() {
 
   const [input, setInput] = useState({
     email: '',
-    role: "",
     password: ''
   });
 
@@ -100,14 +99,6 @@ function Signin() {
           />
         </div>
 
-        <div>
-          <select name="role" id="role" onChange={handleChange} className='w-full py-1 px-3 outline-none border border-black rounded bg-transparent placeholder:text-white'>
-            <option className="text-white" value="">Select your role</option>
-            <option value="seller">Seller</option>
-            <option value="user">User</option>
-          </select>
-        </div>
-
         <button onClick={handleSubmit} className='bg-green-600 w-full text-center text-white py-1 px-3 rounded-md'>
         {
             loading ? "Loading..." :"Login"
@@ -126,4 +117,4 @@ function Signin() {
   );
 }
 
-export default Signin;
+export default Signin; 

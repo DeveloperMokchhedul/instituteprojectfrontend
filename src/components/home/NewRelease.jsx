@@ -8,78 +8,84 @@ import Container from "../common/Container";
 
 function NewRelease() {
   const [releaseProduct, setReleaseProduct] = useState([]);
+  const [isUser, setIsUser] = useState(false);
+
   const dispatch = useDispatch();
-  const [isUser, setIsUser] = useState(false)
-  const { currentUser, isAuthenticated } = useSelector((state) => state.user);
 
 
+  const { currentUser, isAuthenticated } = useSelector((state) => ({
+    currentUser: state.user.currentUser || null, 
+    isAuthenticated: state.user.isAuthenticated || false, 
+  }));
 
+  
   useEffect(() => {
-    if (isAuthenticated && currentUser?.data.data.user.role === "user") {
+    if (isAuthenticated && currentUser?.data?.data?.user?.role === "user") {
       setIsUser(true);
     } else {
       setIsUser(false);
     }
   }, [isAuthenticated, currentUser]);
 
-
+  
   useEffect(() => {
-    const ShowAllProduct = async () => {
+    const fetchReleaseProducts = async () => {
       try {
         const res = await axios.get(
-          "https://bookcycle-qdl4.onrender.com/api/product/releaseproduct", { withCredentials: true }
+          "https://bookcycle-qdl4.onrender.com/api/product/releaseproduct",
+          { withCredentials: true }
         );
-        console.log(res.data); // Debugging: Check the response structure
-        setReleaseProduct(res.data?.AllProduct || []); // Use optional chaining with a default empty array
+        console.log("Release Products Response:", res.data); 
+        setReleaseProduct(res.data?.AllProduct || []);
       } catch (error) {
         console.error("Failed to fetch products:", error.message);
+        toast.error("Failed to fetch new release products.");
       }
     };
-    ShowAllProduct();
+
+    fetchReleaseProducts();
   }, []);
 
+
   const handleCart = (product) => {
-    console.log("product added in cart");
     if (isUser) {
       dispatch(addToCart(product));
-      toast.success("Book Added successfully");
+      toast.success("Book added successfully!");
     } else {
-      toast.error("only User can add to cart");
+      toast.error("Only users can add to the cart.");
     }
   };
-
-
-  console.log(releaseProduct);
 
   return (
     <>
       <Container>
-        <div className="">
+        <div className="new-release">
           <h1 className="text-[24px] sm:text-[45px] md:text-[45px] font-bold text-center py-[20px]">
             New Release Book
           </h1>
           <div>
             <div className="grid grid-cols-12 gap-4 mt-[40px]">
-              {releaseProduct?.length > 0 ? (
+              {releaseProduct.length > 0 ? (
                 releaseProduct
                   .slice(-8)
                   .reverse()
                   .map((product) => (
                     <div
                       key={product._id}
-                      className=" col-span-12 sm:col-span-6 md:col-span-4 xl:col-span-3  p-5 rounded-md shadow-cardShadow transition-all duration-700 hover:scale-95"
+                      className="col-span-12 sm:col-span-6 md:col-span-4 xl:col-span-3 p-5 rounded-md shadow-cardShadow transition-all duration-700 hover:scale-95"
                     >
-                      <div className="flex justify-between pb-5 items-center relative ">
+                      <div className="flex justify-between pb-5 items-center relative">
                         <p className="text-[20px] font-bold rounded-sm pb-2">
                           {product.semister || "Unknown Semester"}
                         </p>
 
-                        <div className=" absolute top-4 left-[70px]  ">
-                          {product.isSold ? (<p className="font-oswald font-bold text-red-600 text-xl z-50 hover:scale-125">SOLD OUT</p>) : ""}
-
+                        <div className="absolute top-4 left-[70px]">
+                          {product.isSold && (
+                            <p className="font-oswald font-bold text-red-600 text-xl z-50 hover:scale-125">
+                              SOLD OUT
+                            </p>
+                          )}
                         </div>
-
-
 
                         <p className="text-[14px] font-bold capitalize rounded-sm pb-2">
                           {product.department || "Unknown Department"}
@@ -92,7 +98,7 @@ function NewRelease() {
                       />
                       <div className="flex flex-col gap-2 mt-3">
                         <p className="mt-[5px] font-bold text-center text-[20px] sm:text-[20px] md:text-[17px] lg:text-[22px] capitalize">
-                          {product.bookname.slice(0, 20) || "Unknown Book"}
+                          {product.bookname?.slice(0, 20) || "Unknown Book"}
                         </p>
                         <p className="font-semibold text-center opacity-50 text-[12px] sm:text-[12px] md:text-[12px] lg:text-[16px]">
                           {product.description?.slice(0, 50) || "No description"}...
@@ -106,21 +112,23 @@ function NewRelease() {
                       <div className="flex justify-between px-3 my-3 pt-4 w-full gap-1">
                         <Link
                           to={`/books/${product._id}`}
-                          className="bg-slate-500 px-2 py-1 rounded-md text-white w-[50%] font-bold text-[10px] md:text-[11px] lg:text-[15px]  text-center hover:bg-slate-600 hover:text-white transition-all duration-500"
+                          className="bg-slate-500 px-2 py-1 rounded-md text-white w-[50%] font-bold text-[10px] md:text-[11px] lg:text-[15px] text-center hover:bg-slate-600 hover:text-white transition-all duration-500"
                         >
                           Show details
                         </Link>
-                        {
-                          product.isSold ? <p className="bg-red-400 px-2 py-1 rounded-md cursor-pointer  text-white w-[50%] font-bold text-[9px] md:text-[10px] lg:text-[15px] text-center hover:bg-white hover:text-black transition-all duration-500">Not Available</p> :
-                            <button
-                              onClick={() => handleCart(product)}
-                              className={` bg-slate-500 px-2 py-1 rounded-md  text-white w-[50%] font-bold text-[10px] md:text-[11px] lg:text-[15px] text-center hover:bg-slate-600 hover:text-white transition-all duration-500`}
-                            >
-                              Add to Cart
-                            </button>
-                        }
+                        {product.isSold ? (
+                          <p className="bg-red-400 px-2 py-1 rounded-md cursor-pointer text-white w-[50%] font-bold text-[9px] md:text-[10px] lg:text-[15px] text-center hover:bg-white hover:text-black transition-all duration-500">
+                            Not Available
+                          </p>
+                        ) : (
+                          <button
+                            onClick={() => handleCart(product)}
+                            className="bg-slate-500 px-2 py-1 rounded-md text-white w-[50%] font-bold text-[10px] md:text-[11px] lg:text-[15px] text-center hover:bg-slate-600 hover:text-white transition-all duration-500"
+                          >
+                            Add to Cart
+                          </button>
+                        )}
                       </div>
-
                     </div>
                   ))
               ) : (
@@ -137,5 +145,3 @@ function NewRelease() {
 }
 
 export default NewRelease;
-
-
