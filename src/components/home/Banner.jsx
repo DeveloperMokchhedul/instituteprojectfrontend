@@ -65,7 +65,7 @@ const Banner = () => {
                   <p className="pb-[30px] lg:pb-[15px] text-[12px] sm:text-[15px] md:text-[12px] lg:text-[16px] lg:text-left text-center pr-[30px]">
                     {item.description}
                   </p>
-                  <button onClick={() => navigate("/books")} className="bg-green-500 px-4 py-2 lg:w-[150px] rounded-md text-white">Find Your Book</button>
+                  <button onClick={() => navigate("/books")} className="bg-slate-500 hover:bg-slate-700 px-4 py-2 lg:w-[150px] rounded-md text-white transition-all duration-500 hover:scale-105">Find Your Book</button>
                 </div>
               </div>
             </SwiperSlide>
