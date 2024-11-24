@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
-import validator from "validator"; // Validator লাইব্রেরি ব্যবহার করা হচ্ছে
+import validator from "validator"; 
 
 function Registration() {
   const [loading, setLoading] = useState(false);
@@ -11,7 +11,6 @@ function Registration() {
     email: "",
     password: "",
     phone: "",
-    role: "",
   });
 
   const [image, setImage] = useState(null);
@@ -31,7 +30,7 @@ function Registration() {
   };
 
   const validateInputs = () => {
-    const { name, email, password, phone, role } = inputData;
+    const { name, email, password, phone } = inputData;
 
     if (!name.trim()) {
       toast.error("Name is required!");
@@ -39,10 +38,6 @@ function Registration() {
     }
     if (!email || !validator.isEmail(email)) {
       toast.error("A valid email is required!");
-      return false;
-    }
-    if (!role) {
-      toast.error("Please select a role!");
       return false;
     }
     if (!phone || !validator.isMobilePhone(phone)) {
@@ -69,7 +64,6 @@ function Registration() {
     formData.append("email", inputData.email);
     formData.append("password", inputData.password);
     formData.append("phone", inputData.phone);
-    formData.append("role", inputData.role);
     if (image) {
       formData.append("image", image);
     }
@@ -137,18 +131,6 @@ function Registration() {
           />
         </div>
 
-        <div>
-          <select
-            name="role"
-            id="role"
-            onChange={handleChange}
-            className="w-full py-1 px-3 outline-none border border-black rounded bg-transparent placeholder:text-black"
-          >
-            <option value="">Enter your role</option>
-            <option value="seller">Seller</option>
-            <option value="user">User</option>
-          </select>
-        </div>
         <div>
           <label htmlFor="phone">Phone number</label>
           <input

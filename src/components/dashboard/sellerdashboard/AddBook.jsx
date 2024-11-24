@@ -90,7 +90,7 @@ function AddBook() {
 
   return (
     <div>
-      <div className='w-[450px] my-[20px] bg-black rounded-lg text-white shadow-2xl shadow-slate-600  mx-auto p-5 flex flex-col gap-y-4 border-2 border-white '>
+      <div className='w-[450px] my-[20px] bg-[#e5e7eb]  rounded-lg text-black shadow-2xl shadow-slate-600  mx-auto p-5 flex flex-col gap-y-4 border-2 border-white '>
         <h1 className='text-[30px] text-center font-oswald font-bold '>Add Your Book for Sales</h1>
 
         <div>
@@ -99,7 +99,7 @@ function AddBook() {
             type="text"
             name="bookname"
             placeholder="Enter your bookname"
-            className="w-full py-1 px-3 outline-none border  rounded bg-transparent border-white"
+            className="w-full py-1 px-3 outline-none border  rounded bg-transparent border-black"
             onChange={handleChange}
           />
         </div>
@@ -110,13 +110,13 @@ function AddBook() {
             type="number"
             name="price"
             placeholder="Enter your price"
-            className="w-full py-1 px-3 outline-none border border-black rounded bg-transparent border-white"
+            className="w-full py-1 px-3 outline-none border border-black rounded bg-transparent "
             onChange={handleChange}
           />
         </div>
 
         <div>
-          <select name="semister" id="semister" onChange={handleChange} className='w-full py-1 px-3  outline-none border text-slate-500 border-white rounded bg-transparent'>
+          <select name="semister" id="semister" onChange={handleChange} className='w-full py-1 px-3  outline-none border text-slate-500 border-black rounded bg-transparent'>
             <option className='text-black' value="">Enter Semester</option>
             <option value="1st">1st</option>
             <option value="2nd">2nd</option>
@@ -129,7 +129,7 @@ function AddBook() {
         </div>
 
         <div>
-          <select name="department" id="department" onChange={handleChange} className='w-full py-1 px-3 outline-none border text-slate-500 bg-black rounded bg-transparent border-white'>
+          <select name="department" id="department" onChange={handleChange} className='w-full py-1 px-3 outline-none border text-slate-500 bg-black rounded bg-transparent border-black'>
             <option className='text-black' value="">Enter Department</option>
             <option value="Computer"> Computer</option>
             <option value="civil">Civil</option>
@@ -143,7 +143,7 @@ function AddBook() {
 
         <div>
           <label htmlFor="description">Enter Book description</label>
-          <textarea name='description' onChange={handleChange} className="w-full p-2 border border-gray-300 rounded-md bg-transparent border-white"></textarea>
+          <textarea name='description' onChange={handleChange} className="w-full p-2 border border-gray-300 rounded-md bg-transparent border-black"></textarea>
         </div>
 
         <div>
@@ -151,7 +151,7 @@ function AddBook() {
           <input type="file" name="productImage" onChange={handleImageChange} />
         </div>
 
-        <button onClick={handleSubmit} className="bg-white hover:bg-white/75 w-full text-center text-black py-1 px-3 rounded-md  hover:bg-white transition-all duration-700">
+        <button onClick={handleSubmit} className="bg-black/75 hover:bg-black w-full text-center text-white py-1 px-3 rounded-md  transition-all duration-700">
          {
           loading?"Loading...":" Add Book"
          }

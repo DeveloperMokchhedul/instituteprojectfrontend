@@ -19,7 +19,7 @@ function UpdateBook() {
         description: "",
     });
 
-    const [productImage, setProductImage] = useState(null); // Image আপডেটের জন্য
+    const [productImage, setProductImage] = useState(null); 
     const navigate = useNavigate();
 
     // 1. Fetch Existing Data for Pre-fill
@@ -64,6 +64,7 @@ function UpdateBook() {
             [name]: value,
         });
     };
+    
 
     const handleImageChange = (e) => {
         setProductImage(e.target.files[0]);
@@ -109,15 +110,17 @@ function UpdateBook() {
         try {
             setLoading(true);
             const res = await axios.put(
-                `https://bookcycle-qdl4.onrender.com/api/product/update/${id}`,
+                `http://localhost:5050/api/product/update/${id}`,
                 formData,
                 { withCredentials: true }
             );
+            console.log("response data is === is ",res);
+            
 
             if (res.status === 200) {
                 setLoading(false);
                 toast.success("Book updated successfully!");
-                navigate("/");
+                navigate("/dashboard");
             }
         } catch (error) {
             toast.error(error.response?.data?.message || "Failed to update book");
@@ -127,7 +130,7 @@ function UpdateBook() {
 
     return (
         <div>
-            <div className='w-[450px] my-[20px] bg-black rounded-lg text-white shadow-2xl shadow-slate-600  mx-auto p-5 flex flex-col gap-y-4 border-2 border-white '>
+            <div className='w-[450px] my-[20px] bg-[#e5e7eb] rounded-lg text-black shadow-2xl shadow-slate-600  mx-auto p-5 flex flex-col gap-y-4  '>
                 <h1 className='text-[30px] text-center font-oswald font-bold '>Update Book</h1>
 
                 <div>
@@ -137,7 +140,7 @@ function UpdateBook() {
                         name="bookname"
                         value={inputData.bookname}
                         placeholder="Enter your bookname"
-                        className="w-full py-1 px-3 outline-none border  rounded bg-transparent border-white"
+                        className="w-full py-1 px-3 outline-none border  rounded bg-transparent border-black"
                         onChange={handleChange}
                     />
                 </div>
@@ -149,13 +152,13 @@ function UpdateBook() {
                         name="price"
                         value={inputData.price}
                         placeholder="Enter your price"
-                        className="w-full py-1 px-3 outline-none border border-black rounded bg-transparent border-white"
+                        className="w-full py-1 px-3 outline-none border rounded bg-transparent border-black"
                         onChange={handleChange}
                     />
                 </div>
 
                 <div>
-                    <select name="semister" id="semister" value={inputData.semister} onChange={handleChange} className='w-full py-1 px-3  outline-none border text-slate-500 border-white rounded bg-transparent'>
+                    <select name="semister" id="semister" value={inputData.semister} onChange={handleChange} className='w-full py-1 px-3  outline-none border text-slate-500 border-black rounded bg-transparent'>
                         <option className='text-black' value="">Enter Semester</option>
                         <option value="1st">1st</option>
                         <option value="2nd">2nd</option>
@@ -168,7 +171,7 @@ function UpdateBook() {
                 </div>
 
                 <div>
-                    <select name="department" id="department" value={inputData.department} onChange={handleChange} className='w-full py-1 px-3 outline-none border text-slate-500 bg-black rounded bg-transparent border-white'>
+                    <select name="department" id="department" value={inputData.department} onChange={handleChange} className='w-full py-1 px-3 outline-none border text-slate-500 bg-black rounded bg-transparent border-black'>
                         <option className='text-black' value="">Enter Department</option>
                         <option value="Computer">Computer</option>
                         <option value="civil">Civil</option>
@@ -186,7 +189,7 @@ function UpdateBook() {
                         name='description'
                         value={inputData.description}
                         onChange={handleChange}
-                        className="w-full p-2 border border-gray-300 rounded-md bg-transparent border-white"
+                        className="w-full p-2 border border-gray-300 rounded-md bg-transparent border-black"
                     ></textarea>
                 </div>
 
@@ -203,7 +206,7 @@ function UpdateBook() {
 
                 <button
                     onClick={handleSubmit}
-                    className="bg-white hover:bg-white/75 w-full text-center text-black py-1 px-3 rounded-md  hover:bg-white transition-all duration-700"
+                    className="bg-black/50 hover:bg-black/75 text-white/75 hover:text-white w-full text-center  py-1 px-3 rounded-md  transition-all duration-700"
                 >
                     {loading ? "Updating..." : "Update Book"}
                 </button>
