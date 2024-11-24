@@ -5,12 +5,10 @@ import { Link } from "react-router-dom";
 import { addToCart } from "../../redux/slice/cartSlice";
 import { toast } from "react-toastify";
 import Container from "../common/Container";
-import Loading from "../../pages/Loading";
 
 function NewRelease() {
   const [releaseProduct, setReleaseProduct] = useState([]);
   const [isUser, setIsUser] = useState(false);
-  const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -33,18 +31,15 @@ function NewRelease() {
   useEffect(() => {
     const fetchReleaseProducts = async () => {
       try {
-        setLoading(true)
         const res = await axios.get(
           "https://bookcycle-qdl4.onrender.com/api/product/releaseproduct",
           { withCredentials: true }
         );
         console.log("Release Products Response:", res.data); 
         setReleaseProduct(res.data?.AllProduct || []);
-        setLoading(false)
       } catch (error) {
         console.error("Failed to fetch products:", error.message);
         toast.error("Failed to fetch new release products.");
-        setLoading(false)
       }
     };
 
@@ -61,10 +56,6 @@ function NewRelease() {
     }
   };
 
-
-  if(loading){
-    return <Loading />
-  }
   return (
     <>
       <Container>
@@ -81,7 +72,7 @@ function NewRelease() {
                   .map((product) => (
                     <div
                       key={product._id}
-                      className="col-span-12 sm:col-span-6 md:col-span-4 xl:col-span-3 p-5 rounded-md shadow-cardShadow transition-all duration-700 hover:scale-95 bg-[#e5e7eb]/50 hover:bg-[#e5e7eb]"
+                      className="col-span-12 sm:col-span-6 md:col-span-4 xl:col-span-3 p-5 rounded-md shadow-cardShadow transition-all duration-700 hover:scale-95"
                     >
                       <div className="flex justify-between pb-5 items-center relative">
                         <p className="text-[20px] font-bold rounded-sm pb-2">
@@ -120,7 +111,7 @@ function NewRelease() {
 
                       <div className="flex justify-between px-3 my-3 pt-4 w-full gap-1">
                         <Link
-                          to={`/books/${product._id}`}te
+                          to={`/books/${product._id}`}
                           className="bg-slate-500 px-2 py-1 rounded-md text-white w-[50%] font-bold text-[10px] md:text-[11px] lg:text-[15px] text-center hover:bg-slate-600 hover:text-white transition-all duration-500"
                         >
                           Show details
