@@ -110,7 +110,7 @@ function UpdateBook() {
         try {
             setLoading(true);
             const res = await axios.put(
-                `http://localhost:5050/api/product/update/${id}`,
+                `https://bookcycle-qdl4.onrender.com/api/product/update/${id}`,
                 formData,
                 { withCredentials: true }
             );
