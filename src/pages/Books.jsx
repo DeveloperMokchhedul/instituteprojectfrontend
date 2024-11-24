@@ -95,7 +95,7 @@ function Books() {
               .map((product) => (
                 <div
                   key={product?._id}
-                  className="col-span-12 sm:col-span-6 md:col-span-4 xl:col-span-3 p-5 rounded-md shadow-cardShadow hover:scale-95 transition-all duration-700 hover:bg-white/50"
+                  className="col-span-12 sm:col-span-6 md:col-span-4 xl:col-span-3 p-5 rounded-md shadow-cardShadow hover:scale-95 transition-all duration-700 bg-[#e5e7eb]/50 hover:bg-[#e5e7eb]"
                 >
                 
                   <div className="flex justify-between pb-5 items-center relative">
